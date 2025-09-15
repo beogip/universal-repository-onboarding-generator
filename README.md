@@ -2,7 +2,7 @@
 
 **Generate comprehensive onboarding documentation for any repository automatically**
 
-[![Version](https://img.shields.io/badge/version-v2.0.0-blue.svg)](https://github.com/beogip/universal-repository-onboarding-generator)
+[![Version](https://img.shields.io/badge/version-v2.1.0-blue.svg)](https://github.com/beogip/universal-repository-onboarding-generator)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-Active-brightgreen.svg)]()
 
@@ -16,7 +16,8 @@ The Universal Repository Onboarding Generator is an AI-powered tool that automat
 - 📚 **Adaptive Documentation**: Creates tailored documentation based on what's actually in the repository
 - 🤖 **Interactive Tech Leader**: Generates an AI mentor prompt for guided onboarding sessions
 - 🌍 **Universal Compatibility**: Works with any repository type and technology stack
-- ⚡ **Optimized Performance**: v2.0 is 57% more efficient while maintaining full functionality
+- ⚡ **Optimized Performance**: v2.1 includes onboarding time objectives and quality gates
+- 🎯 **Results-Driven**: Targets first meaningful contribution within 4 hours
 
 ## 🚀 Quick Start
 
@@ -30,47 +31,52 @@ The Universal Repository Onboarding Generator is an AI-powered tool that automat
 1. Open any repository in VS Code
 2. Run the command: `@workspace /repo-onboarding`
 3. Wait for analysis and documentation generation
-4. Find your onboarding documentation in `.copilot/onboarding/`
+4. Find your onboarding documentation in `doc/onboarding/`
+5. Use the generated `.github/instructions/tech-leader-walkthrough.instructions.md` for AI-guided onboarding
 
 ## 📁 Generated Documentation Structure
 
-The tool creates a complete onboarding package:
+The tool creates a complete onboarding package in two main locations:
+
+**📚 Main Documentation** (`doc/onboarding/`):
 
 ```
-.copilot/onboarding/
-├── README.md                    # Project overview and quick start
-├── setup-guide.md              # Installation & environment setup
-├── tech-leader-walkthrough.md  # Interactive AI mentor prompt
+doc/onboarding/
+├── README.md                    # Project overview with Quick Start (10 min)
+├── setup-guide.md              # Essential setup (≤30 min) + Complete setup
 ├── examples/
-│   ├── basic-usage.md          # Simple examples
-│   └── advanced-workflows.md   # Complex scenarios
-└── [conditional files based on repository]
-    ├── development-workflow.md  # Contributing guidelines
-    ├── architecture-overview.md # System architecture
-    ├── api-documentation.md     # API reference
-    ├── testing-guide.md         # Testing strategies
-    ├── deployment-guide.md      # Deployment processes
-    ├── troubleshooting.md       # Common issues
-    └── resources.md             # Learning materials
+│   ├── basic-usage.md          # Simple examples with first contribution guide
+│   └── advanced-workflows.md   # Complex scenarios and workflows
+└── [conditional files - maximum 2-3, only if essential]
+    ├── troubleshooting.md      # Common issues and solutions
+    ├── architecture-overview.md # System architecture (if complex)
+    └── development-workflow.md # Contributing guidelines (if complex process)
+```
+
+**🤖 AI Integration** (`.github/instructions/`):
+
+```
+.github/instructions/
+└── tech-leader-walkthrough.instructions.md # Interactive AI mentor (auto-activates)
 ```
 
 ## 🤖 Interactive Tech Leader Experience
 
-One of the most powerful features is the generated **Tech Leader Walkthrough**. This creates a specialized AI prompt that acts as an experienced senior developer who knows your repository inside and out.
+One of the most powerful features is the **AI Tech Leader Integration**. The generator creates a specialized Copilot instruction file that automatically activates when you need onboarding help.
 
-### What the Tech Leader Does:
+### ✨ Auto-Activation Features:
 
-- **Personalized Assessment**: Evaluates your technical background and goals
-- **Guided Repository Tour**: Walks you through the codebase structure and patterns
-- **Hands-on Learning**: Uses real examples from your repository
-- **Contribution Ready**: Helps identify and implement your first meaningful contribution
+- **Smart Activation**: Simply ask "help me understand this codebase" or "I need repository onboarding"
+- **Context-Aware**: The AI Tech Leader knows your specific repository and references the generated documentation
+- **Structured Learning**: Follows a 4-phase approach (Assessment → Walkthrough → Development → Contribution)
+- **Real Examples**: Uses actual code from your repository, not fictional examples
 
-### How to Use:
+### 🎯 Onboarding Objectives (New in v2.1):
 
-1. Open `tech-leader-walkthrough.md` from the generated documentation
-2. Copy the AI prompt provided
-3. Start a new conversation with GitHub Copilot
-4. Paste the prompt to begin your personalized onboarding journey
+- **Primary Goal**: First meaningful contribution within 4 hours
+- **Setup Time**: ≤ 30 minutes for working environment
+- **Understanding Time**: ≤ 20 minutes for core architecture
+- **Reading Time**: ≤ 45 minutes total documentation
 
 ## 🛠 Supported Repository Types
 
@@ -101,7 +107,18 @@ universal-repository-onboarding-generator/
 
 ## 🔄 Version History
 
-### v2.0.0 (September 2025) - **Current**
+### v2.1.0 (September 2025) - **Current** 🆕
+
+**🎯 Onboarding Optimization Update:**
+
+- **Objective-driven approach**: Added STEP 0 with clear time-based goals
+- **Improved structure**: Changed from `.copilot/onboarding/` to `doc/onboarding/` (more standard)
+- **Reduced fragmentation**: Maximum 2-3 conditional files vs previous 7 options
+- **Enhanced AI integration**: Auto-activating tech leader with repository-specific knowledge
+- **Quality gates**: Coherent limits and realistic documentation sizes (≤800 lines total)
+- **Results focus**: Primary goal of first contribution within 4 hours
+
+### v2.0.0 (September 2025)
 
 - **57% reduction in complexity** while maintaining full functionality
 - **Consolidated workflow**: 8 granular steps → 5 streamlined steps
@@ -118,7 +135,12 @@ universal-repository-onboarding-generator/
 
 ## 🔧 How It Works
 
-The generator follows a **5-step optimized process**:
+The generator follows a **6-step optimized process** (updated in v2.1):
+
+0. **🎯 Establish Onboarding Objectives** _(New)_
+
+   - Sets clear time-based goals for effective onboarding
+   - Defines success metrics: 4-hour contribution, 30-min setup, 45-min reading
 
 1. **🔍 Complete Repository Analysis**
 
@@ -127,32 +149,30 @@ The generator follows a **5-step optimized process**:
 
 2. **📋 Smart Documentation Generation Strategy**
 
-   - Determines which documentation files are needed
-   - Applies intelligent conditional logic based on repository content
+   - Determines which documentation files are truly needed
+   - Applies strict consolidation rules (maximum 2-3 conditional files)
 
 3. **📝 Technology-Specific Content Creation**
 
-   - Creates all core documentation files
-   - Generates only justified conditional files
-   - Uses real examples from the actual codebase
+   - Creates optimized CORE files with Quick Start sections and time estimates
+   - Generates only essential conditional files with realistic content limits
 
-4. **🤖 Interactive Tech Leader Walkthrough Generation**
+4. **🤖 Interactive Tech Leader Instructions Generation**
 
-   - Creates a specialized AI mentor prompt
-   - Includes unified operational constraints
-   - Implements 4-phase interactive learning flow
+   - Creates auto-activating AI mentor for seamless Copilot integration
+   - Includes repository-specific knowledge and 4-phase learning flow
 
 5. **✅ Final Validation & Quality Assurance**
-   - Verifies all files were created correctly
-   - Validates cross-references and accuracy
-   - Provides completion report
+   - Validates onboarding effectiveness with time-based criteria
+   - Ensures documentation coherence and realistic scope
 
 ## 🎯 Key Benefits
 
-- **⏱ Faster Onboarding**: Reduce new developer onboarding time by up to 50%
+- **⏱ Faster Onboarding**: Achieve first meaningful contribution within 4 hours
+- **📊 Measurable Goals**: Setup ≤30 min, understanding ≤20 min, reading ≤45 min total
 - **🎯 Tailored Content**: Documentation specific to your repository's actual structure
-- **🤖 AI-Powered Mentoring**: Interactive guidance from an AI that knows your codebase
-- **🔄 Consistent Quality**: Standardized onboarding across all your repositories
+- **🤖 AI-Powered Mentoring**: Auto-activating interactive guidance from AI that knows your codebase
+- **� Consolidated Approach**: Maximum 2-3 additional files, focus on essential information
 - **📈 Scalable**: Works equally well for small projects and large enterprise codebases
 
 ## 📚 Implementation Details
@@ -177,7 +197,7 @@ This project follows its own onboarding methodology! To contribute:
 
 1. **Use the generator on this repository** to understand the codebase
 2. **Follow the generated Tech Leader walkthrough** for guided onboarding
-3. **Review the documentation** in `.copilot/onboarding/` (if generated)
+3. **Review the documentation** in `doc/onboarding/` (if generated)
 4. **Make your contributions** following the established patterns
 
 ## 📄 License
