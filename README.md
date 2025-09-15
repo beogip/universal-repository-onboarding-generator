@@ -101,7 +101,7 @@ universal-repository-onboarding-generator/
 ├── doc/
 │   └── repository-onboarding-generator.v1.0.0.spec.md    # Feature specifications
 └── src/
-    ├── repository-onboarding-generator.instructions.md    # Main prompt (v2.0 optimized)
+    ├── repository-onboarding-generator.instructions.md    # Main prompt (v2.1 with applyTo frontmatter)
     └── repository-onboarding-generator-backup.instructions.md  # Original version
 ```
 
@@ -111,6 +111,7 @@ universal-repository-onboarding-generator/
 
 **🎯 Onboarding Optimization Update:**
 
+- **Auto-activating Tech Leader**: Added `applyTo: "**"` frontmatter for seamless Copilot integration
 - **Objective-driven approach**: Added STEP 0 with clear time-based goals
 - **Improved structure**: Changed from `.copilot/onboarding/` to `doc/onboarding/` (more standard)
 - **Reduced fragmentation**: Maximum 2-3 conditional files vs previous 7 options
@@ -121,7 +122,7 @@ universal-repository-onboarding-generator/
 ### v2.0.0 (September 2025)
 
 - **57% reduction in complexity** while maintaining full functionality
-- **Consolidated workflow**: 8 granular steps → 5 streamlined steps
+- **Consolidated workflow**: 8 granular steps → 6 streamlined steps
 - **Unified constraints**: Eliminated redundant sections and repetitions
 - **Improved clarity**: Better logical flow and organization
 - **Enhanced performance**: Faster processing and easier maintenance
@@ -137,34 +138,34 @@ universal-repository-onboarding-generator/
 
 The generator follows a **6-step optimized process** (updated in v2.1):
 
-0. **🎯 Establish Onboarding Objectives** _(New)_
+**STEP 1.** **🎯 Establish Onboarding Objectives** _(New in v2.1)_
 
-   - Sets clear time-based goals for effective onboarding
-   - Defines success metrics: 4-hour contribution, 30-min setup, 45-min reading
+- Sets clear time-based goals for effective onboarding
+- Defines success metrics: 4-hour contribution, 30-min setup, 45-min reading
 
-1. **🔍 Complete Repository Analysis**
+**STEP 2.** **🔍 Complete Repository Analysis**
 
-   - Detects repository type, technology stack, and architecture patterns
-   - Analyzes directory structure, configuration files, and dependencies
+- Detects repository type, technology stack, and architecture patterns
+- Analyzes directory structure, configuration files, and dependencies
 
-2. **📋 Smart Documentation Generation Strategy**
+**STEP 3.** **📋 Smart Documentation Generation Strategy**
 
-   - Determines which documentation files are truly needed
-   - Applies strict consolidation rules (maximum 2-3 conditional files)
+- Determines which documentation files are truly needed
+- Applies strict consolidation rules (maximum 2-3 conditional files)
 
-3. **📝 Technology-Specific Content Creation**
+**STEP 4.** **📝 Technology-Specific Content Creation**
 
-   - Creates optimized CORE files with Quick Start sections and time estimates
-   - Generates only essential conditional files with realistic content limits
+- Creates optimized CORE files with Quick Start sections and time estimates
+- Generates only essential conditional files with realistic content limits
 
-4. **🤖 Interactive Tech Leader Instructions Generation**
+**STEP 5.** **🤖 GitHub Copilot Instructions Generation**
 
-   - Creates auto-activating AI mentor for seamless Copilot integration
-   - Includes repository-specific knowledge and 4-phase learning flow
+- Creates auto-activating AI Tech Leader with `applyTo: "**"` frontmatter
+- Includes repository-specific knowledge and 4-phase learning flow
 
-5. **✅ Final Validation & Quality Assurance**
-   - Validates onboarding effectiveness with time-based criteria
-   - Ensures documentation coherence and realistic scope
+**STEP 6.** **✅ Final Validation & Quality Assurance** - Validates onboarding effectiveness with time-based criteria
+
+- Ensures documentation coherence and realistic scope
 
 ## 🎯 Key Benefits
 

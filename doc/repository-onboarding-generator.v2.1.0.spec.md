@@ -87,7 +87,7 @@
 
 1. Navigate to the desired repository in VS Code
 2. Run the prompt: `@workspace /repo-onboarding`
-3. System establishes onboarding objectives (STEP 0 - new)
+3. System establishes onboarding objectives (STEP 1 - new)
 4. Wait for analysis and documentation generation in `doc/onboarding/`
 5. Review generated files with Quick Start sections and time estimates
 6. For interactive onboarding, simply ask Copilot "help me understand this codebase" - the AI tutor auto-activates
@@ -114,7 +114,7 @@
 
 ### AI Integration (`.github/instructions/`):
 
-- `tech-leader-walkthrough.instructions.md` - Auto-activating AI mentor with repository-specific knowledge
+- `tech-leader-walkthrough.instructions.md` - Auto-activating AI mentor with `applyTo: "**"` frontmatter for seamless Copilot integration
 
 ---
 
@@ -122,9 +122,10 @@
 
 **Objective-Driven Approach:**
 
-- Added STEP 0: Establish clear time-based onboarding objectives
+- Added STEP 1: Establish clear time-based onboarding objectives (renumbered from STEP 0)
 - Primary goal: First contribution within 4 hours
 - Measurable success criteria with realistic time estimates
+- 6-step workflow (1-6) for improved clarity
 
 **Optimized Structure:**
 
@@ -134,7 +135,8 @@
 
 **Enhanced AI Integration:**
 
-- Auto-activating tech leader (no copy/paste required)
+- Auto-activating tech leader with `applyTo: "**"` frontmatter (no copy/paste required)
+- Seamless Copilot integration following GitHub's path-specific instructions format
 - Repository-specific knowledge integration
 - 4-phase structured learning flow with time awareness
 
@@ -190,5 +192,7 @@
 - **2025-09-15 – v2.1 Update: Added objective-driven approach with 4-hour contribution goal (Juan Gipponi)**
 - **2025-09-15 – Changed documentation structure to `doc/onboarding/` for better standardization (Juan Gipponi)**
 - **2025-09-15 – Implemented strict consolidation rules and realistic documentation limits (Juan Gipponi)**
+- **2025-09-15 – Added `applyTo: "**"` frontmatter for automatic Tech Leader activation via GitHub Copilot (Juan Gipponi)\*\*
+- **2025-09-15 – Renumbered workflow steps from 0-5 to 1-6 for improved clarity and intuitive numbering (Juan Gipponi)**
 
 ---
