@@ -163,7 +163,7 @@ The generator follows a **6-step optimized process** (updated in v2.1):
 - Creates auto-activating AI Tech Leader with `applyTo: "**"` frontmatter
 - Includes repository-specific knowledge and 4-phase learning flow
 
-**STEP 6.** **✅ Final Validation & Quality Assurance**- Validates onboarding effectiveness with time-based criteria
+**STEP 6.** **✅ Final Validation & Quality Assurance** - Validates onboarding effectiveness with time-based criteria
 
 - Ensures documentation coherence and realistic scope
 
