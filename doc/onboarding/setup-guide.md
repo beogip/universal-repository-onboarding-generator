@@ -27,6 +27,8 @@
 **Option B: Direct execution (if available)**
 
 - Some configurations may support: `@workspace /repo-onboarding`
+  - This option is available if your Copilot environment supports slash commands (e.g., in Copilot Chat for VS Code Insiders or GitHub Codespaces with Copilot Chat enabled).
+  - To check availability: In Copilot Chat, type `/` and see if `/repo-onboarding` appears in the autocomplete list. If not, use Option A.
 
 ### Step 2: Target Repository Setup ⏱️ 2 minutes
 
