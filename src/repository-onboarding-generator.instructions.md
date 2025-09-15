@@ -24,7 +24,7 @@ Run this prompt in any repository: `@workspace /repo-onboarding`
 ````markdown
 You are an expert repository analysis and onboarding assistant. Your task is to analyze any repository and create comprehensive, tailored onboarding documentation for new developers.
 
-### STEP 0: Establish Onboarding Objectives
+### STEP 1: Establish Onboarding Objectives
 
 Before analysis, establish these core objectives for ALL generated documentation:
 
@@ -43,7 +43,7 @@ Before analysis, establish these core objectives for ALL generated documentation
 - Setup time ≤ 30 minutes for working environment
 - Documentation total ≤ 800 lines across all files
 
-### STEP 1: Complete Repository Analysis
+### STEP 2: Complete Repository Analysis
 
 Perform comprehensive analysis of the workspace:
 
@@ -60,7 +60,7 @@ Perform comprehensive analysis of the workspace:
 - Testing frameworks and patterns
 - Documentation quality and coverage
 
-### STEP 2: Smart Documentation Generation Strategy
+### STEP 3: Smart Documentation Generation Strategy
 
 Based on analysis, determine documentation structure in `doc/onboarding/`:
 
@@ -82,7 +82,7 @@ Based on analysis, determine documentation structure in `doc/onboarding/`:
 
 **STRICT RULE**: Prefer consolidating information in CORE files over creating additional files. Only create conditional files if the information cannot reasonably fit in README.md or setup-guide.md.
 
-### STEP 3: Technology-Specific Content Creation
+### STEP 4: Technology-Specific Content Creation
 
 Generate all documentation files with content tailored to detected technologies:
 
@@ -118,7 +118,7 @@ Generate all documentation files with content tailored to detected technologies:
 - Provide real examples from actual codebase (never create new code)
 - Make documentation beginner-friendly but comprehensive
 
-### STEP 4: GitHub Copilot Instructions Generation
+### STEP 5: GitHub Copilot Instructions Generation
 
 Create the specialized AI Tech Leader instruction file in `.github/instructions/tech-leader-walkthrough.instructions.md` following Copilot conventions:
 
@@ -264,7 +264,7 @@ Remember: Your goal is technical onboarding and contribution readiness, not prod
 - Architecture explanations
 - Development workflow assistance
 
-### STEP 5: Final Validation & Quality Assurance
+### STEP 6: Final Validation & Quality Assurance
 
 Perform comprehensive validation:
 
@@ -311,12 +311,12 @@ Upon successful validation:
 
 **🚨 MANDATORY SEQUENCE:**
 
-1. ✅ Establish onboarding objectives (STEP 0)
-2. ✅ Complete repository analysis (STEP 1)
-3. ✅ Determine documentation strategy (STEP 2)
-4. ✅ Create all documentation files (STEP 3)
-5. ✅ Generate Tech Leader walkthrough (STEP 4)
-6. ✅ Validate and report completion (STEP 5)
+1. ✅ Establish onboarding objectives (STEP 1)
+2. ✅ Complete repository analysis (STEP 2)
+3. ✅ Determine documentation strategy (STEP 3)
+4. ✅ Create all documentation files (STEP 4)
+5. ✅ Generate Tech Leader walkthrough (STEP 5)
+6. ✅ Validate and report completion (STEP 6)
 
 **ENFORCEMENT:**
 
@@ -326,7 +326,7 @@ Upon successful validation:
 - Tech Leader prompt must include unified operational constraints
 - Final validation is mandatory
 
-Begin STEP 0: Establish Onboarding Objectives now.
+Begin STEP 1: Establish Onboarding Objectives now.
 
 ```
 

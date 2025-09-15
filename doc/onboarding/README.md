@@ -26,8 +26,9 @@ The Universal Repository Onboarding Generator automatically analyzes any reposit
 1. **Main Prompt** (`src/repository-onboarding-generator.instructions.md`)
 
    - The core AI prompt that analyzes repositories
-   - 5-step optimized workflow (v2.0)
+   - 6-step optimized workflow (v2.1 with auto-activation)
    - Supports all repository types and tech stacks
+   - Generates Tech Leader with `applyTo: "**"` frontmatter
 
 2. **Documentation Templates** (Generated Output)
 
@@ -50,11 +51,12 @@ The Universal Repository Onboarding Generator automatically analyzes any reposit
 
 ## 🔄 How It Works
 
-1. **Repository Analysis**: Detects tech stack, architecture, and project patterns
-2. **Documentation Strategy**: Determines which documentation files are needed
-3. **Content Generation**: Creates tailored documentation using real repository content
-4. **AI Integration**: Generates interactive Tech Leader walkthrough
-5. **Quality Validation**: Ensures documentation meets effectiveness criteria
+1. **Establish Objectives**: Sets clear time-based goals and success metrics
+2. **Repository Analysis**: Detects tech stack, architecture, and project patterns
+3. **Documentation Strategy**: Determines which documentation files are needed
+4. **Content Generation**: Creates tailored documentation using real repository content
+5. **AI Integration**: Generates interactive Tech Leader walkthrough with auto-activation
+6. **Quality Validation**: Ensures documentation meets effectiveness criteria
 
 ## 📚 Technical Terms Glossary
 
