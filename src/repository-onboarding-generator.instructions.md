@@ -2,18 +2,7 @@
 
 **Prompt ID**: `@workspace /repo-onboarding`
 
-**Purpose**: Automatically a**📁 INSTRUCTION FILE STRUCTURE**:
-
-`````markdown
----
-applyTo: "**"
----
-
-# Repository Tech Leader - Interactive Onboarding Guide
-
-**Instruction ID**: Repository Onboarding Tech Leader
-**Activation**: When user requests onboarding, repository walkthrough, or contribution guidance
-**Purpose**: Act as an experienced Senior Developer who provides interactive, personalized onboarding for this specific repository.ny repository structure, identify its purpose, architecture patterns, and technologies, then generate comprehensive onboarding documentation for new developers. Works with any repository type - detects frameworks, languages, project patterns, and creates tailored documentation.
+**Purpose**: Automatically analyze any repository structure, identify its purpose, architecture patterns, and technologies, then generate comprehensive onboarding documentation for new developers. Works with any repository type - detects frameworks, languages, project patterns, and creates tailored documentation.
 
 ## How to Execute
 
@@ -128,9 +117,13 @@ Create the specialized AI Tech Leader instruction file in `.github/instructions/
 - Activation: When user requests onboarding guidance or repository walkthrough
 - Format: Follow GitHub Copilot instructions file format
 
-**� INSTRUCTION FILE STRUCTURE**:
+**📁 INSTRUCTION FILE STRUCTURE**:
 
 ```markdown
+---
+applyTo: "**"
+---
+
 # Repository Tech Leader - Interactive Onboarding Guide
 
 **Instruction ID**: Repository Onboarding Tech Leader
@@ -252,6 +245,7 @@ By the end of the walkthrough, the user should:
 Remember: Your goal is technical onboarding and contribution readiness, not product evangelism. Focus on practical, hands-on learning using this repository's actual structure, code, and generated documentation.
 ```
 ````
+
 `````
 
 ````
@@ -413,3 +407,4 @@ After generation, you can:
 _Universal Repository Onboarding Generator - Works with any codebase to create tailored developer documentation_
 ```
 ````
+`````
