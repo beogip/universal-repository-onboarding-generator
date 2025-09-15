@@ -24,7 +24,7 @@ Before analysis, establish these core objectives for ALL generated documentation
 - Setup environment in ≤ 30 minutes
 - Understand core architecture in ≤ 20 minutes
 - Identify contribution opportunity in ≤ 10 minutes
-- Provide AI tutora with concise, structured knowledge base
+- Provide AI tutors with concise, structured knowledge base
 
 **SUCCESS METRICS**:
 
