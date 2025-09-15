@@ -65,6 +65,7 @@ Ask about experience level, tech stack familiarity, contribution type interest, 
 Guide through directory structure, entry points, architecture patterns, key abstractions, and config files. Use setup-guide.md as your roadmap and examples/ folder for demonstrations. Cross-reference actual code with documentation explanations.
 
 **Key Areas to Cover:**
+
 - **Main Prompt**: `src/repository-onboarding-generator.instructions.md` - the core AI prompt
 - **Documentation Structure**: `doc/` folder with specifications and generated examples
 - **Generated Output**: Examples in `doc/onboarding/` showing expected results
@@ -75,8 +76,9 @@ Guide through directory structure, entry points, architecture patterns, key abst
 Explain setup process, local development, testing strategy, build/deploy processes, and branching/PR workflow. Follow the setup-guide.md instructions step-by-step and reference any development-workflow.md if available.
 
 **Workflow Specifics:**
+
 - **Usage**: How to execute the prompt in any repository
-- **Customization**: How to modify generated documentation  
+- **Customization**: How to modify generated documentation
 - **Validation**: How to verify successful documentation generation
 - **Integration**: How the Tech Leader auto-activation works
 
@@ -85,6 +87,7 @@ Explain setup process, local development, testing strategy, build/deploy process
 Help identify good first issues, explain how to implement typical features/fixes, set code review expectations, and guide toward first meaningful contribution. Use examples from the examples/ folder and any troubleshooting.md content.
 
 **Contribution Opportunities:**
+
 - Add new repository type examples
 - Improve existing documentation templates
 - Enhance the prompt structure or validation
@@ -131,6 +134,7 @@ This repository is the **Universal Repository Onboarding Generator** - an AI-pow
 **Success Criteria**: Generated documentation enables first contribution within 4 hours
 
 **Critical Files:**
+
 - `src/repository-onboarding-generator.instructions.md` - Main AI prompt (v2.0)
 - `doc/repository-onboarding-generator.v1.0.0.spec.md` - Feature specifications
 - `README.md` - Project overview and usage instructions

@@ -5,9 +5,11 @@
 **Get your first repository documentation generated in under 10 minutes!**
 
 ### What This Tool Does
+
 The Universal Repository Onboarding Generator automatically analyzes any repository and creates comprehensive, tailored onboarding documentation for new developers. It works with any technology stack and generates both static documentation and an interactive AI mentor.
 
 ### ✅ Success Indicators
+
 - ✅ You can run the prompt in VS Code with Copilot
 - ✅ Generated documentation appears in `doc/onboarding/`
 - ✅ Interactive Tech Leader activates when you ask for onboarding help
@@ -17,16 +19,18 @@ The Universal Repository Onboarding Generator automatically analyzes any reposit
 
 **Repository Type**: Documentation/Tool Repository  
 **Technology Stack**: Markdown, GitHub Copilot, AI Prompt Engineering  
-**Architecture Pattern**: Single-purpose AI tool with modular documentation  
+**Architecture Pattern**: Single-purpose AI tool with modular documentation
 
 ### Core Components
 
 1. **Main Prompt** (`src/repository-onboarding-generator.instructions.md`)
+
    - The core AI prompt that analyzes repositories
    - 5-step optimized workflow (v2.0)
    - Supports all repository types and tech stacks
 
 2. **Documentation Templates** (Generated Output)
+
    - Smart documentation structure in `doc/onboarding/`
    - Interactive AI Tech Leader for guided onboarding
    - Conditional file generation based on repository complexity
@@ -62,6 +66,7 @@ The Universal Repository Onboarding Generator automatically analyzes any reposit
 ## 🚀 Ready to Use?
 
 **Next Steps:**
+
 1. Review the setup guide for detailed usage instructions
 2. Check out examples for common use cases
 3. Try the interactive Tech Leader by asking Copilot for onboarding help
