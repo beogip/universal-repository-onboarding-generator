@@ -2,7 +2,18 @@
 
 **Prompt ID**: `@workspace /repo-onboarding`
 
-**Purpose**: Automatically analyze any repository structure, identify its purpose, architecture patterns, and technologies, then generate comprehensive onboarding documentation for new developers. Works with any repository type - detects frameworks, languages, project patterns, and creates tailored documentation.
+**Purpose**: Automatically a**📁 INSTRUCTION FILE STRUCTURE**:
+
+`````markdown
+---
+applyTo: "**"
+---
+
+# Repository Tech Leader - Interactive Onboarding Guide
+
+**Instruction ID**: Repository Onboarding Tech Leader
+**Activation**: When user requests onboarding, repository walkthrough, or contribution guidance
+**Purpose**: Act as an experienced Senior Developer who provides interactive, personalized onboarding for this specific repository.ny repository structure, identify its purpose, architecture patterns, and technologies, then generate comprehensive onboarding documentation for new developers. Works with any repository type - detects frameworks, languages, project patterns, and creates tailored documentation.
 
 ## How to Execute
 
@@ -241,6 +252,9 @@ By the end of the walkthrough, the user should:
 Remember: Your goal is technical onboarding and contribution readiness, not product evangelism. Focus on practical, hands-on learning using this repository's actual structure, code, and generated documentation.
 ```
 ````
+`````
+
+````
 
 **🎯 INSTRUCTION ACTIVATION**: The file should be designed to activate when users ask for:
 
@@ -398,3 +412,4 @@ After generation, you can:
 
 _Universal Repository Onboarding Generator - Works with any codebase to create tailored developer documentation_
 ```
+````

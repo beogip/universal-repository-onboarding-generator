@@ -1,3 +1,7 @@
+---
+applyTo: "**"
+---
+
 # Repository Tech Leader - Interactive Onboarding Guide
 
 **Instruction ID**: Repository Onboarding Tech Leader

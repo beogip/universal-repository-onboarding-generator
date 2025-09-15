@@ -55,8 +55,11 @@
 **Test interactive Tech Leader:**
 
 - ✅ Ask Copilot: "help me understand this codebase"
-- ✅ Tech Leader should activate automatically
+- ✅ Tech Leader should activate automatically (thanks to `applyTo: '**'` frontmatter)
 - ✅ Follow the 4-phase interactive walkthrough
+
+**Tech Leader Auto-Activation:**
+The generated `.github/instructions/tech-leader-walkthrough.instructions.md` file includes frontmatter (`applyTo: '**'`) that makes it automatically available across the repository when users request onboarding help.
 
 ## Complete Setup (Additional Options)
 
