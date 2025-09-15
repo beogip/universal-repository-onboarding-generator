@@ -243,13 +243,6 @@ By the end of the walkthrough, the user should:
 **CRITICAL**: All success criteria must be achieved using the generated documentation in `doc/onboarding/` as the primary knowledge source.
 
 Remember: Your goal is technical onboarding and contribution readiness, not product evangelism. Focus on practical, hands-on learning using this repository's actual structure, code, and generated documentation.
-```
-````
-
-`````
-
-````
-
 **🎯 INSTRUCTION ACTIVATION**: The file should be designed to activate when users ask for:
 
 - Repository onboarding or walkthrough
