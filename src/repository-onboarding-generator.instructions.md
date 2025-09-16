@@ -253,7 +253,54 @@ Remember: Your goal is technical onboarding and contribution readiness, not prod
 
 ### STEP 6: Final Validation & Quality Assurance
 
-Perform comprehensive validation:
+Perform comprehensive validation with detailed file-by-file content verification:
+
+**CONTENT ACCURACY VALIDATION (FILE-BY-FILE):**
+
+For each generated documentation file, verify content matches actual repository code and structure:
+
+**README.md Content Verification:**
+
+- ✅ Project description matches actual repository purpose (check main files, package.json, README, etc.)
+- ✅ Technology stack listed matches detected dependencies and configuration files
+- ✅ Architecture patterns described match actual code organization
+- ✅ Quick Start section references real files and actual entry points
+- ✅ All mentioned directories and files actually exist in the repository
+- ✅ Command examples use correct syntax for detected tech stack
+
+**setup-guide.md Content Verification:**
+
+- ✅ Prerequisites match actual project dependencies (package.json, requirements.txt, etc.)
+- ✅ Installation commands are correct for detected package manager/tech stack
+- ✅ Configuration files referenced actually exist and contain expected content
+- ✅ Environment variables mentioned match those used in actual code
+- ✅ Build/run commands match scripts in package.json or build configurations
+- ✅ Port numbers and URLs match default configurations in codebase
+
+**examples/ Folder Content Verification:**
+
+- ✅ Code snippets reference actual functions, classes, or modules from the repository
+- ✅ API endpoints mentioned exist in the actual codebase
+- ✅ File paths in examples point to real files
+- ✅ Import/require statements use correct module names from the project
+- ✅ Configuration examples match actual config file formats
+- ✅ No fictional or invented code examples are included
+
+**Tech Leader Walkthrough Content Verification:**
+
+- ✅ Repository type and stack mentioned match actual analysis
+- ✅ Assessment questions reference correct technologies detected
+- ✅ File paths and directory structure match actual repository layout
+- ✅ Architecture patterns described align with actual code organization
+- ✅ Development workflow steps match actual project practices
+
+**CROSS-REFERENCE VALIDATION:**
+
+- ✅ All internal documentation links point to files that actually exist
+- ✅ File paths mentioned across documents are consistent and accurate
+- ✅ Technology versions mentioned match those in package files
+- ✅ Command line tools referenced are actually used by the project
+- ✅ Branch names, repository URLs match actual repository information
 
 **ONBOARDING EFFECTIVENESS CHECK:**
 
@@ -270,6 +317,8 @@ Before completion, validate:
 - If setup-guide.md > 200 lines → consolidate or split essential vs complete
 - If README.md lacks "Quick Start" section → add prominently
 - If > 6 total files created → justify or consolidate
+- If any file references non-existent code/files → correct immediately
+- If setup commands don't match detected tech stack → revise and align
 
 **FILE VERIFICATION:**
 
@@ -279,20 +328,26 @@ Before completion, validate:
 - ✅ Check all cross-references are accurate
 - ✅ Validate setup instructions match detected technology stack
 
-**QUALITY CHECK:**
+**REPOSITORY-CODE CONSISTENCY CHECK:**
 
-- Documentation uses actual repository structure and patterns
-- Tech Leader prompt includes all operational constraints
-- All examples reference real code patterns from codebase
-- Content is beginner-friendly but comprehensive
+- ✅ Documentation uses actual repository structure and patterns (not generic examples)
+- ✅ Tech Leader prompt includes all operational constraints and correct repository context
+- ✅ All examples reference real code patterns from codebase (verify existence)
+- ✅ Content is beginner-friendly but comprehensive and factually accurate
+- ✅ No outdated or incorrect information about the repository structure
+- ✅ All mentioned tools, frameworks, and libraries are actually used in the project
 
 **COMPLETION REPORT:**
-Upon successful validation:
+Upon successful validation (including file-by-file content verification):
 
 - "✅ **ONBOARDING DOCUMENTATION GENERATION COMPLETE**"
-- "📁 **Files Created**: [list all generated files]"
+- "📁 **Files Created**: [list all generated files with line counts]"
 - "🎯 **Repository Type Detected**: [detected type and stack]"
-- "🚀 **Ready for Use**: Documentation available in `doc/onboarding/`"
+- "� **Content Validation Status**: All generated content verified against actual repository code"
+- "📋 **Cross-References Checked**: [number] internal links validated"
+- "⚡ **Setup Commands Verified**: All installation/build commands match detected tech stack"
+- "�🚀 **Ready for Use**: Documentation available in `doc/onboarding/`"
+- "🎓 **Interactive Tech Leader**: Auto-activates for repository onboarding requests"
 
 ### EXECUTION REQUIREMENTS
 
@@ -311,10 +366,12 @@ Upon successful validation:
 - Justify each conditional file before creating
 - All examples must use existing repository content
 - Tech Leader prompt must include unified operational constraints
-- Final validation is mandatory
+- **File-by-file validation is mandatory** - verify all content matches actual repository code
+- **Cross-reference validation required** - ensure all links, paths, and references are accurate
+- **Content accuracy is critical** - no fictional examples or incorrect technical information allowed
+- **Final validation with detailed content verification is mandatory before completion**
 
 Begin STEP 1: Establish Onboarding Objectives now.
-
 ```
 
 ## Expected Output Structure
@@ -322,6 +379,7 @@ Begin STEP 1: Establish Onboarding Objectives now.
 The generator creates two main areas:
 
 **`doc/onboarding/` - Documentation Files:**
+
 ```
 
 ├── README.md # Project overview and quick start
@@ -333,6 +391,7 @@ The generator creates two main areas:
 ```
 
 **`.github/instructions/` - Copilot Integration:**
+
 ```
 
 └── tech-leader-walkthrough.instructions.md # Interactive AI mentor (auto-activates for onboarding requests)
@@ -340,6 +399,7 @@ The generator creates two main areas:
 ```
 
 **CONDITIONAL FILES in `doc/onboarding/` (if justified):**
+
 ```
 
 ├── development-workflow.md # Contributing, branch strategy, PR process
@@ -351,7 +411,6 @@ The generator creates two main areas:
 └── resources.md # Learning materials and references
 
 ```
-
 
 ## Usage Instructions
 
@@ -367,12 +426,14 @@ The generator creates two main areas:
 The generated `.github/instructions/tech-leader-walkthrough.instructions.md` creates a seamless Copilot integration that automatically activates when users need onboarding help. No copying or pasting required!
 
 **How it works:**
+
 - **Auto-activation**: Simply ask Copilot questions like "help me understand this codebase" or "I need onboarding for this repository"
 - **Context-aware**: The Tech Leader knows your specific repository and references the generated documentation
 - **Interactive learning**: Follows a structured 4-phase approach with comprehension checks
 - **Hands-on guidance**: Uses real examples from your actual repository structure
 
 **What the Tech Leader provides:**
+
 - **Personalized assessment**: Evaluates your technical background and goals
 - **Repository walkthrough**: Guides through directory structure, architecture patterns, and key files
 - **Development workflow**: Explains setup, local development, testing, and deployment processes
@@ -398,6 +459,12 @@ After generation, you can:
 ---
 
 _Universal Repository Onboarding Generator - Works with any codebase to create tailored developer documentation_
+
+```
+
 ```
 ````
-`````
+
+```
+
+```
