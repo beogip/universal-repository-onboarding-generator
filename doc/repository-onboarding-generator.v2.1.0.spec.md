@@ -150,6 +150,14 @@
 
 ## 9. Validation & Testing (Updated v2.1)
 
+**Content Accuracy Validation (File-by-File) - NEW:**
+
+- **README.md Verification**: Project description, technology stack, architecture patterns, and file references match actual repository
+- **setup-guide.md Verification**: Prerequisites, installation commands, configuration files, and build commands align with detected tech stack
+- **examples/ Verification**: All code snippets reference actual functions/classes, API endpoints exist, file paths are valid, no fictional examples
+- **Tech Leader Verification**: Repository type, assessment questions, file paths, and workflows match actual project structure
+- **Cross-Reference Validation**: All internal links point to existing files, technology versions match package files, commands are project-accurate
+
 **Onboarding Effectiveness Validation:**
 
 - Verify developers can complete setup in ≤ 30 minutes using essential setup
@@ -158,19 +166,21 @@
 - Check total documentation is ≤ 800 lines across all files
 - Ensure README includes time estimates for major activities
 
-**Quality Gates:**
+**Enhanced Quality Gates:**
 
 - If setup-guide.md > 200 lines → consolidate or split essential vs complete
 - If README.md lacks "Quick Start" section → add prominently
 - If > 6 total files created → justify or consolidate
+- **If any file references non-existent code/files → correct immediately**
+- **If setup commands don't match detected tech stack → revise and align**
 
-**Traditional Validation (Maintained):**
+**Repository-Code Consistency Validation (Enhanced):**
 
-- Verify all expected files are correctly generated
-- Review documentation clarity, relevance, and tailoring to repository
-- Validate AI tutor auto-activation and repository-specific guidance
-- Request feedback on achievement of time-based objectives
-- Allow manual editing and customization as needed
+- Documentation uses actual repository structure and patterns (not generic examples)
+- All examples reference real code patterns from codebase (verify existence)
+- Content is factually accurate with no outdated or incorrect information
+- All mentioned tools, frameworks, and libraries are actually used in the project
+- Tech Leader prompt includes correct repository context and operational constraints
 
 ---
 
@@ -194,5 +204,6 @@
 - **2025-09-15 – Implemented strict consolidation rules and realistic documentation limits (Juan Gipponi)**
 - **2025-09-15 – Added `applyTo: "**"` frontmatter for automatic Tech Leader activation via GitHub Copilot (Juan Gipponi)\*\*
 - **2025-09-15 – Renumbered workflow steps from 0-5 to 1-6 for improved clarity and intuitive numbering (Juan Gipponi)**
+- **2025-09-15 – Enhanced STEP 6 with comprehensive file-by-file content validation and cross-reference verification (Juan Gipponi)**
 
 ---

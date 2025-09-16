@@ -163,8 +163,11 @@ The generator follows a **6-step optimized process** (updated in v2.1):
 - Creates auto-activating AI Tech Leader with `applyTo: "**"` frontmatter
 - Includes repository-specific knowledge and 4-phase learning flow
 
-**STEP 6.** **✅ Final Validation & Quality Assurance** - Validates onboarding effectiveness with time-based criteria
+**STEP 6.** **✅ Final Validation & Quality Assurance** - File-by-file content verification and comprehensive quality control
 
+- Validates all generated content matches actual repository code and structure
+- Performs cross-reference validation to ensure accuracy of all links and paths
+- Includes detailed content verification for each documentation file
 - Ensures documentation coherence and realistic scope
 
 ## 🎯 Key Benefits
