@@ -34,20 +34,81 @@ Before analysis, establish these core objectives for ALL generated documentation
 
 ### STEP 2: Complete Repository Analysis
 
-Perform comprehensive analysis of the workspace:
+**🚨 CRITICAL REQUIREMENT: ALL INFORMATION MUST COME FROM ACTUAL REPOSITORY INSPECTION**
 
-**Repository Detection:**
+**MANDATORY APPROACH: EVIDENCE-BASED ANALYSIS ONLY**
 
-- Repository type and main purpose
-- Technology stack (languages, frameworks, tools, build systems)
-- Project architecture and patterns (monorepo vs single, MVC/MVP/MVVM, API patterns)
+- Use ONLY file reading, code inspection, and workspace analysis tools
+- NEVER make assumptions or create fictional information
+- ALL findings must be verifiable by examining actual repository files
+- If information cannot be found in repository, acknowledge its absence rather than inventing it
 
-**Structure Analysis:**
+**REQUIRED ANALYSIS SEQUENCE:**
 
-- Key directories and their purposes
-- Configuration files and dependencies
-- Testing frameworks and patterns
-- Documentation quality and coverage
+**2.1 Core Repository Inspection:**
+
+- **Root Directory Scan**: List and examine all files in root directory
+- **Package/Dependency Files Analysis**:
+  - Read package.json, requirements.txt, Cargo.toml, go.mod, pom.xml, etc.
+  - Extract ACTUAL dependencies, not assumed ones
+  - Note specific versions and dev dependencies
+- **Configuration Files Review**:
+  - Examine .gitignore, .env.example, config files, docker files
+  - Read actual build configurations (webpack, vite, etc.)
+  - Check CI/CD files (.github/workflows, .gitlab-ci.yml, etc.)
+
+**2.2 Technology Stack Detection (Evidence-Based):**
+
+- **Languages**: Based on file extensions found in repository scan
+- **Frameworks**: Based on dependencies in package files and import statements
+- **Build Tools**: Based on configuration files and scripts sections
+- **Databases**: Based on connection strings, migrations, or schema files found
+- **Testing**: Based on test directories and testing dependencies found
+- **Deployment**: Based on Docker files, deployment configs, or CI files found
+
+**2.3 Architecture Pattern Recognition:**
+
+- **Directory Structure Analysis**: Map actual folder structure and naming conventions
+- **Code Organization**: Read sample files to understand actual patterns used
+- **Entry Points**: Identify main files, index files, or application entry points
+- **API Structure**: If applicable, examine route files or API definitions
+- **Data Layer**: Look for models, schemas, or database interaction patterns
+- **Frontend Structure**: If applicable, examine component organization and state management
+
+**2.4 Development Workflow Investigation:**
+
+- **Scripts Analysis**: Read package.json scripts or Makefile commands
+- **Development Commands**: Identify actual dev server, build, and test commands
+- **Environment Setup**: Check for environment variable requirements
+- **Database Setup**: Look for migration files, seed data, or setup scripts
+- **Documentation Review**: Read existing README, CONTRIBUTING.md, or docs/ folder
+
+**2.5 Repository Characteristics Assessment:**
+
+- **Project Size**: Count files, lines of code, number of dependencies
+- **Complexity Level**: Assess based on directory depth, file count, and architecture
+- **Maintenance Status**: Check recent commits, dependencies updates, documentation quality
+- **Team Patterns**: Look for code style configs, PR templates, issue templates
+
+**2.6 VERIFICATION REQUIREMENTS:**
+
+Before proceeding to STEP 3, ensure:
+
+- ✅ All technology stack items have been verified by examining actual files
+- ✅ All configuration details come from reading actual config files
+- ✅ All development commands have been found in package.json, Makefile, or scripts
+- ✅ Architecture descriptions match actual directory structure observed
+- ✅ Any mentioned features exist in the actual codebase
+- ✅ Dependencies versions match those in package/dependency files
+- ✅ No assumptions or generic patterns have been used without verification
+
+**🚫 STRICTLY PROHIBITED:**
+
+- Making assumptions about technology stack without evidence
+- Describing features that don't exist in the repository
+- Using generic examples instead of repository-specific ones
+- Inventing commands, dependencies, or configurations
+- Creating documentation based on "typical" patterns rather than actual ones
 
 ### STEP 3: Smart Documentation Generation Strategy
 
@@ -75,10 +136,16 @@ Based on analysis, determine documentation structure in `doc/onboarding/`:
 
 Generate all documentation files with content tailored to detected technologies:
 
+**🚨 MANDATORY CONTENT SOURCING: ALL INFORMATION MUST BE REPOSITORY-SPECIFIC**
+
 **CONTENT CREATION GUIDELINES:**
 
 **README.md Requirements:**
 
+- **Project Description**: Based on actual README.md, package.json description, or main files inspection
+- **Technology Stack**: ONLY list technologies found in STEP 2 analysis with evidence
+- **Architecture Overview**: Based on actual directory structure and code patterns observed
+- **Quick Start Commands**: Use ACTUAL commands from package.json scripts or found documentation
 - Include prominent "🚀 Quick Start (10 minutes)" section at the top
 - Structure with progressive complexity: Simple overview → Quick start → Detailed info
 - Maximum 150 lines total (consolidate, don't fragment)
@@ -87,6 +154,12 @@ Generate all documentation files with content tailored to detected technologies:
 
 **setup-guide.md Requirements:**
 
+- **Prerequisites**: Based on engines field, runtime versions, or system requirements found
+- **Installation Commands**: Use ACTUAL package manager detected (npm, yarn, pip, etc.)
+- **Configuration Steps**: Based on ACTUAL config files found (.env.example, config/, etc.)
+- **Environment Variables**: Only include those found in .env.example or documented
+- **Database Setup**: Only if database migrations, schemas, or connection configs were found
+- **Development Server**: Use ACTUAL scripts from package.json or documented commands
 - Focus on "minimal viable setup" first (should take ≤ 30 minutes)
 - Include "Essential Setup" vs "Complete Setup" sections
 - Maximum 150 lines for essential setup
@@ -95,17 +168,59 @@ Generate all documentation files with content tailored to detected technologies:
 
 **examples/ Requirements:**
 
+- **Code Examples**: Reference ACTUAL functions, classes, or components from the codebase
+- **API Endpoints**: Only document endpoints that exist in route files or API definitions
+- **Configuration Examples**: Use ACTUAL config file formats found in repository
+- **Import Statements**: Use correct module names and paths from actual code
 - Include practical "first contribution" example
 - Show complete request/response cycles
 - Maximum 2 example files unless justified
 
-**IMPLEMENTATION:**
+**REPOSITORY-SPECIFIC IMPLEMENTATION REQUIREMENTS:**
 
-- Create all CORE files with repository-specific content
+**For README.md:**
+
+- ✅ Project purpose matches actual repository content and existing README
+- ✅ Technology versions match package.json or dependency files
+- ✅ Quick start commands work with actual project structure
+- ✅ All mentioned directories and files actually exist
+- ✅ Architecture description matches observed code organization
+
+**For setup-guide.md:**
+
+- ✅ Installation commands match detected package manager and dependencies
+- ✅ Port numbers and URLs match actual configuration files
+- ✅ Environment variables exist in .env.example or are documented
+- ✅ Database commands match actual migration or setup scripts found
+- ✅ Build and run scripts exist in package.json or documented workflows
+
+**For examples/ files:**
+
+- ✅ All code snippets reference actual files, functions, or classes in the repository
+- ✅ Import paths are correct and point to existing modules
+- ✅ API endpoints exist in actual route definitions
+- ✅ Configuration examples match actual config file structure and format
+- ✅ No fictional or generic examples that don't relate to the actual codebase
+
+**FINAL IMPLEMENTATION CHECKLIST:**
+
+Before creating any documentation file, verify:
+
+- ✅ All information has been extracted from actual repository inspection
+- ✅ No assumptions or generic patterns have been used
+- ✅ All commands, dependencies, and configurations are real and verified
+- ✅ Examples reference actual code in the repository
+- ✅ Technology stack accurately reflects detected tools and frameworks
+- ✅ Architecture description matches observed directory and code structure
+
+**STRICT ENFORCEMENT:**
+
+- Create all CORE files with repository-specific content ONLY
 - Create only justified CONDITIONAL files (maximum 2-3)
-- Include specific setup commands for detected stack
-- Provide real examples from actual codebase (never create new code)
-- Make documentation beginner-friendly but comprehensive
+- Include specific setup commands found in actual scripts or documentation
+- Provide real examples from actual codebase (never create fictional code)
+- Make documentation beginner-friendly but comprehensive and factually accurate
+- If information is not available in repository, acknowledge gap rather than invent
 
 ### STEP 5: GitHub Copilot Instructions Generation
 
@@ -170,6 +285,17 @@ Before engaging with the user, you MUST:
    - ✅ Located relevant examples and workflows to reference during walkthrough
 
 **🚨 DO NOT START THE 4-PHASE FLOW UNTIL DOCUMENTATION REVIEW IS COMPLETE**
+
+**🎯 CRITICAL REPOSITORY-SPECIFIC CUSTOMIZATION:**
+
+Before finalizing the Tech Leader instruction, customize it with ACTUAL repository information:
+
+- Replace `[DETECTED_MAIN_TECH]` with the actual primary technology found in STEP 2 analysis
+- Replace `[DETECTED_ARCHITECTURE_PATTERN]` with the actual architectural pattern observed
+- Include specific directory names, file names, and technologies found in the repository
+- Reference actual setup commands, scripts, and configuration files discovered
+- Mention actual entry points, main files, and key components identified
+- Include repository-specific examples and workflows from the analysis
 
 This preparation ensures you can provide accurate, comprehensive guidance based on the repository-specific documentation that was generated for this exact codebase.
 
@@ -362,14 +488,32 @@ Upon successful validation (including file-by-file content verification):
 
 **ENFORCEMENT:**
 
-- Complete each step fully before proceeding
-- Justify each conditional file before creating
-- All examples must use existing repository content
-- Tech Leader prompt must include unified operational constraints
+**REPOSITORY INSPECTION REQUIREMENTS:**
+
+- Complete STEP 2 evidence-based analysis before proceeding to content creation
+- Use ONLY information found through actual file reading and code inspection
+- ALL technology stack items must be verified by examining actual files
+- ALL commands must come from package.json, Makefiles, or documented scripts
+- ALL examples must reference actual code, functions, or components in the repository
+
+**CONTENT CREATION REQUIREMENTS:**
+
+- Justify each conditional file before creating based on actual repository complexity
+- All examples must use existing repository content (no fictional code allowed)
+- Tech Leader prompt must include unified operational constraints and actual repository context
 - **File-by-file validation is mandatory** - verify all content matches actual repository code
 - **Cross-reference validation required** - ensure all links, paths, and references are accurate
 - **Content accuracy is critical** - no fictional examples or incorrect technical information allowed
+- **Evidence-based documentation only** - if information isn't in repository, acknowledge gap
 - **Final validation with detailed content verification is mandatory before completion**
+
+**PROHIBITED PRACTICES:**
+
+- ❌ Making assumptions about technology stack without file evidence
+- ❌ Creating generic examples instead of repository-specific ones
+- ❌ Inventing commands, dependencies, or configurations not found in repository
+- ❌ Using "typical" patterns instead of actual observed patterns
+- ❌ Describing features or functionality that doesn't exist in the codebase
 
 Begin STEP 1: Establish Onboarding Objectives now.
 ```
