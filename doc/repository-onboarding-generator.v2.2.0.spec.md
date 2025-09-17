@@ -112,7 +112,7 @@
 3. Make changes to modular components in `src/parts/`
 4. Use `yarn watch` for real-time development with automatic rebuilds
 5. Test changes with `yarn build` to generate final prompt
-6. Deploy using the generated `dist/repository-onboarding-generator.instructions.md`
+6. Deploy using the generated `dist/repository-onboarding-generator.prompt.md`
 
 ---
 
@@ -133,9 +133,9 @@
 - `architecture-overview.md` - System architecture (if non-standard/complex)
 - `development-workflow.md` - Contributing guidelines (if complex process)
 
-### AI Integration (`.github/instructions/`):
+### AI Integration (`.github/prompts/`):
 
-- `tech-leader-walkthrough.instructions.md` - Auto-activating AI mentor with `applyTo: "**"` frontmatter for seamless Copilot integration
+- `ai-mentor.prompt.md` - AI mentor prompt for Copilot onboarding. Activate by typing `/ai-mentor` in Copilot chat.
 
 ---
 
@@ -289,7 +289,7 @@ src/parts/
 
 **Breaking Changes:**
 
-- Direct editing of `src/repository-onboarding-generator.instructions.md` no longer supported
+- Direct editing of `src/repository-onboarding-generator.prompt.md` no longer supported
 - Build step now required for prompt deployment
 - Development environment setup needed for prompt modification
 
