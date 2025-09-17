@@ -70,7 +70,7 @@ Before completion, validate:
 **FILE VERIFICATION:**
 
 - ✅ Confirm all 3 CORE files exist with substantial, relevant content in `doc/onboarding/`
-- ✅ Confirm GitHub Copilot instruction file exists at `.github/instructions/tech-leader-walkthrough.instructions.md`
+- ✅ Confirm GitHub Copilot instruction file exists at `.github/prompts/ai-mentor.prompt.md`
 - ✅ Verify only justified conditional files were created (maximum 2-3)
 - ✅ Check all cross-references are accurate
 - ✅ Validate setup instructions match detected technology stack

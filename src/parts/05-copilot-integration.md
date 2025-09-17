@@ -1,20 +1,16 @@
 ### STEP 5: GitHub Copilot Instructions Generation
 
-Create the specialized AI Tech Leader instruction file in `.github/instructions/tech-leader-walkthrough.instructions.md` following Copilot conventions:
+Create the specialized AI Mentor instruction file in `.github/prompts/ai-mentor.prompt.md` following Copilot conventions:
 
 **📁 FILE LOCATION & NAMING**:
 
-- Path: `.github/instructions/tech-leader-walkthrough.instructions.md`
+- Path: `.github/prompts/ai-mentor.prompt.md`
 - Activation: When user requests onboarding guidance or repository walkthrough
 - Format: Follow GitHub Copilot instructions file format
 
 **📁 INSTRUCTION FILE STRUCTURE**:
 
 ```markdown
----
-applyTo: "**"
----
-
 # Repository Tech Leader - Interactive Onboarding Guide
 
 **Instruction ID**: Repository Onboarding Tech Leader

@@ -10,7 +10,7 @@ Based on analysis, determine documentation structure in `doc/onboarding/`:
 
 **GITHUB COPILOT INTEGRATION (Always Required):**
 
-4. **.github/instructions/tech-leader-walkthrough.instructions.md** - Interactive AI Tech Leader prompt following Copilot conventions
+4. **.github/prompts/ai-mentor.prompt.md** - Interactive AI Mentor prompt following Copilot conventions
 
 **CONDITIONAL FILES (Maximum 2-3 additional files, only if essential):**
 
@@ -48,7 +48,7 @@ CORE FILES (Always created):
    - Content focus: [based on key components and entry points from analysis]
    - Files planned: [1-2 files unless complexity justifies more]
 
-✅ .github/instructions/tech-leader-walkthrough.instructions.md
+✅ .github/prompts/ai-mentor.prompt.md
    - Purpose: Interactive AI mentor for repository onboarding
    - Customization: [based on detected tech stack and architecture from analysis]
 
