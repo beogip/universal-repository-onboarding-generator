@@ -1,0 +1,30 @@
+{
+  "name": "universal-repository-onboarding-generator",
+  "version": "2.1.0",
+  "description": "AI-powered tool that automatically analyzes repositories and creates tailored onboarding documentation",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "node build/build.js",
+    "build:dev": "node build/build.js --dev",
+    "watch": "node build/build.js --watch",
+    "clean": "rm -f src/repository-onboarding-generator.instructions.md",
+    "dev": "yarn clean && yarn build:dev",
+    "prod": "yarn clean && yarn build"
+  },
+  "keywords": [
+    "onboarding",
+    "documentation",
+    "ai",
+    "repository",
+    "github-copilot",
+    "developer-tools"
+  ],
+  "author": "Juan Gipponi",
+  "license": "MIT",
+  "devDependencies": {
+    "chokidar": "^3.6.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
