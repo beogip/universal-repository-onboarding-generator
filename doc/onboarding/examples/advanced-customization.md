@@ -196,7 +196,7 @@ Built on {{BUILD_DATE}} at {{TIMESTAMP}} for version {{VERSION}}
 **VS Code Integration**:
 
 - Place generated prompt in `.github/prompts/` for GitHub Copilot
-- Use `@workspace /repo-onboarding` to activate
+- Use `/repository-onboarding-generator` to activate
 
 **CI/CD Integration Example**:
 

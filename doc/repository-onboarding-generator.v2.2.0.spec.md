@@ -98,12 +98,13 @@
 ### For End Users (Repository Analysis):
 
 1. Navigate to the desired repository in VS Code
-2. Run the prompt: `@workspace /repo-onboarding`
-3. System establishes onboarding objectives (STEP 1)
-4. Wait for analysis and documentation generation in `doc/onboarding/`
-5. Review generated files with Quick Start sections and time estimates
-6. For interactive onboarding, simply ask Copilot "help me understand this codebase" - the AI tutor auto-activates
-7. Follow the 4-phase structured learning flow for guided onboarding
+2. Copy the file `repository-onboarding-generator.prompt.md` into the `.github/prompts/` folder of your target repository.
+3. In the Copilot chat, type: `/repository-onboarding-generator`
+4. The system will establish onboarding objectives (STEP 1)
+5. Wait for analysis and documentation generation in `doc/onboarding/`
+6. Review the generated files with Quick Start sections and time estimates
+7. For interactive onboarding, simply ask Copilot "help me understand this codebase" – the AI tutor auto-activates
+8. Follow the 4-phase structured learning flow for guided onboarding
 
 ### For Prompt Developers (NEW in v2.2):
 
@@ -276,7 +277,8 @@ src/parts/
 
 **For End Users:**
 
-- **No Changes Required**: Same `@workspace /repo-onboarding` command
+**Action Required**: Now use `/repository-onboarding-generator` in Copilot chat
+
 - **Same Output**: Generated documentation structure and content unchanged
 - **Enhanced Quality**: Better validation and more accurate repository analysis
 
