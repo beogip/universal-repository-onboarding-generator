@@ -1,11 +1,11 @@
 {
   "name": "Universal Repository Onboarding Generator",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Modular prompt builder configuration",
   "header": {
     "file": "00-header.md",
     "variables": {
-      "VERSION": "2.1.0"
+      "VERSION": "2.2.0"
     }
   },
   "wrapper": {
