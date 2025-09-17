@@ -13,9 +13,10 @@ This is a **Documentation Generation Tool** built with **Node.js** that creates 
 ### Instant Usage
 
 1. Open any repository in VS Code with GitHub Copilot
-2. Run: `@workspace /repo-onboarding`
-3. Wait for analysis and documentation generation (2-5 minutes)
-4. Find your documentation in `doc/onboarding/`
+2. Copy the file `repository-onboarding-generator.prompt.md` into the `.github/prompts/` folder of your target repository.
+3. Run: `/repository-onboarding-generator`
+4. Wait for analysis and documentation generation (2-5 minutes)
+5. Find your documentation in `doc/onboarding/`
 
 **✅ Success Indicator**: You should see generated files in `doc/onboarding/` with project-specific setup guides and examples.
 
