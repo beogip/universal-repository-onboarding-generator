@@ -1,159 +1,174 @@
-# Basic Usage Examples
+# Basic Usage Example
 
-## Example 1: Generate Documentation for a Simple Project
+Based on analysis findings and strategy: Using KEY COMPONENTS from REPOSITORY ANALYSIS SUMMARY (src/parts/ modular system, build/build.js processor) and basic workflow from DOCUMENTATION STRATEGY SUMMARY.
 
-### Scenario: Small Web Application
+## 🎯 Your First Prompt Generation (5 minutes)
 
-You have a basic React application and want to create onboarding documentation.
+This example walks you through generating your first repository onboarding prompt using the modular parts system.
 
-**Steps:**
+### Prerequisites
 
-1. Open the React repository in VS Code
-2. Start new Copilot conversation
-3. Execute the onboarding generator prompt
-4. Review generated documentation
+- ✅ Completed [setup-guide.md](../setup-guide.md)
+- ✅ Repository dependencies installed (`yarn install`)
 
-**Expected Output Structure:**
+### Step-by-Step Walkthrough
 
-```
-doc/onboarding/
-├── README.md                    # Overview with "Quick Start (10 minutes)"
-├── setup-guide.md              # Node.js/npm setup, dev server instructions
-├── examples/
-│   ├── basic-usage.md          # Creating components, running dev server
-│   └── advanced-workflows.md   # Testing, building, deployment
-└── troubleshooting.md          # Common React/npm issues
+**1. Explore the Parts System** (2 minutes):
+
+```bash
+# List all source parts
+ls -la src/parts/
 ```
 
-**Generated Content Examples:**
-
-- Setup instructions will include `npm install` and `npm start`
-- Examples will reference actual components from your repository
-- Tech Leader will understand React patterns and guide accordingly
-
-## Example 2: First Contribution Walkthrough
-
-### Making Your First Contribution to This Repository
-
-**Goal**: Add a new example to the documentation  
-**Time Estimate**: 30-45 minutes  
-**Difficulty**: Beginner-friendly
-
-**Step-by-Step Process:**
-
-1. **Understand the Repository Structure**
-
-   ```
-   universal-repository-onboarding-generator/
-   ├── src/                    # Main prompt implementation
-   ├── doc/                    # Specifications and generated docs
-   └── README.md               # Project overview
-   ```
-
-2. **Identify Contribution Opportunity**
-
-   - Add a new usage example in `doc/onboarding/examples/`
-   - Document a specific repository type scenario
-   - Improve existing documentation with real-world case
-
-3. **Make the Change**
-
-   ```markdown
-   # Example: Documentation Repository
-
-   ### Scenario: GitBook or Jekyll Site
-
-   Repository contains mostly markdown files with configuration for static site generation.
-
-   **Generated Documentation Focus:**
-
-   - Setup instructions for static site generator
-   - Content contribution workflow
-   - Preview and publication process
-   ```
-
-4. **Test Your Contribution**
-   - Ensure markdown formatting is correct
-   - Verify examples reference real repository patterns
-   - Check that time estimates are realistic
-
-**Success Indicators:**
-
-- ✅ New example follows existing pattern
-- ✅ Content is practical and actionable
-- ✅ Examples use real repository scenarios (not fictional)
-
-## Example 3: Interactive Tech Leader Experience
-
-### How to Use the Generated AI Mentor
-
-Once documentation is generated, you can experience guided onboarding:
-
-**Activation:**
+**Expected Output**:
 
 ```
-User: "I need help understanding this repository"
-Tech Leader: "I'm your Senior Developer mentor for this specific repository..."
+00-header.md                 # Prompt header with metadata
+01-establish-objectives.md   # Step 1 content
+02-repository-analysis.md    # Step 2 content
+[... more numbered parts]
+99-footer.md                # Prompt footer
+config.json                 # Build configuration
 ```
 
-**4-Phase Walkthrough Example:**
+**2. Examine Build Configuration**:
 
-**Phase 1: Assessment**
-
-```
-Tech Leader: "What's your experience level with Markdown and AI prompt engineering?"
-User: "I'm familiar with Markdown but new to AI prompts"
-Tech Leader: "Perfect! This repository focuses on prompt engineering for documentation generation..."
+```bash
+# View the build settings
+cat src/parts/config.json | head -20
 ```
 
-**Phase 2: Repository Walkthrough**
+**Key Fields**:
 
-```
-Tech Leader: "Let's start with the core structure. The main prompt is in src/..."
-```
+- `version`: Current prompt version (2.2.0)
+- `parts`: Array of markdown files to combine
+- `variables`: Template substitutions
 
-**Phase 3: Development Workflow**
+**3. Generate the Prompt** (1 minute):
 
-```
-Tech Leader: "For contributions, you'll mainly work with Markdown files..."
-```
-
-**Phase 4: Contribution Guidance**
-
-```
-Tech Leader: "A great first contribution would be adding a new repository type example..."
+```bash
+yarn build
 ```
 
-## Request/Response Workflow
+**✅ Success Indicator**: No error messages, build completes in ~2-3 seconds
 
-### Complete Generator Execution Example
+**4. Verify Output** (1 minute):
 
-**Input (User Request):**
-
-```
-@workspace /repo-onboarding
-
-[Paste full prompt from src/repository-onboarding-generator.instructions.md]
+```bash
+# Check generated file size and content
+ls -lh dist/repository-onboarding-generator.prompt.md
+head -10 dist/repository-onboarding-generator.prompt.md
 ```
 
-**Processing Steps:**
+**Expected**: File should be several KB with header showing version 2.2.0 and current build date
 
-1. Repository analysis (detects: documentation repo, Markdown-based, AI tools)
-2. Documentation strategy (determines: CORE files + examples, no conditional files)
-3. Content generation (creates tailored content for this specific repository)
-4. Tech Leader generation (creates auto-activating AI mentor)
-5. Validation (confirms all files created and cross-references accurate)
+### Understanding the Build Process
 
-**Output (Generated Files):**
+**Template Variable Processing**:
+The build script replaces template variables in markdown files:
 
-- `doc/onboarding/README.md` - Project overview with Quick Start
-- `doc/onboarding/setup-guide.md` - Installation and usage instructions
-- `doc/onboarding/examples/` - Usage examples (this file!)
-- `.github/instructions/tech-leader-walkthrough.instructions.md` - AI mentor
+```markdown
+# Before processing (in source files)
 
-**Success Metrics:**
+Version: {{VERSION}}
+Built: {{BUILD_DATE}}
 
-- Total execution time: ~15 minutes
-- Documentation reading time: ~30 minutes
-- Setup time for new user: ~30 minutes
-- Time to first contribution: ~2 hours (well under 4-hour goal)
+# After processing (in output)
+
+Version: 2.2.0
+Built: 2025-09-17
+```
+
+**File Combination Order**:
+Files are combined in numerical order:
+
+1. `00-header.md` (prompt metadata)
+2. `01-establish-objectives.md` (Step 1)
+3. `02-repository-analysis.md` (Step 2)
+4. [continuing through all numbered parts]
+5. `99-footer.md` (completion message)
+
+## 🔄 Making Your First Change (5 minutes)
+
+Let's modify a part file to see the system in action:
+
+**1. Start Watch Mode**:
+
+```bash
+yarn watch
+# Keep this running in terminal
+```
+
+**2. Edit a Part File**:
+
+```bash
+# Edit the header (safe to modify)
+nano src/parts/00-header.md
+```
+
+**Simple Change**: Add your name to the author line or change version number.
+
+**3. Save and Observe**:
+The watch process automatically detects changes and rebuilds:
+
+```
+[timestamp] File changed: src/parts/00-header.md
+[timestamp] ✅ Build completed successfully
+```
+
+**4. Verify Your Change**:
+
+```bash
+head -15 dist/repository-onboarding-generator.prompt.md
+```
+
+Your modification should appear in the generated file.
+
+## 📋 Common Patterns
+
+**Adding New Content**:
+
+- Create new numbered part: `src/parts/08-new-section.md`
+- Update `src/parts/config.json` to include it in parts array
+- Run `yarn build` to incorporate
+
+**Template Variables Available**:
+
+- `{{VERSION}}` - From config.json
+- `{{DATE}}` - Current date (auto-generated)
+- `{{BUILD_DATE}}` - YYYY-MM-DD format
+- `{{TIMESTAMP}}` - Full ISO timestamp
+
+**Build Commands Summary**:
+
+```bash
+yarn clean      # Remove output files
+yarn dev        # Clean + development build
+yarn build      # Production build
+yarn watch      # Auto-rebuild on changes
+yarn prod       # Clean + production build
+```
+
+## ✅ Success Validation
+
+After completing this example, you should:
+
+- ✅ Understand the numbered parts system in `src/parts/`
+- ✅ Know how to run builds (`yarn build`)
+- ✅ See how template variables get processed
+- ✅ Be able to make simple edits and rebuild
+- ✅ Have generated `dist/repository-onboarding-generator.prompt.md`
+
+## 🎯 Ready for Next Steps
+
+**First Contribution Ideas**:
+
+1. **Improve Documentation**: Edit parts in `src/parts/` for clarity
+2. **Add Variables**: Extend template variables in `config.json`
+3. **Enhance Build**: Improve processing in `build/build.js`
+
+**Continue Learning**: Try [advanced-customization.md](advanced-customization.md) for deeper customization options.
+
+---
+
+**Example completion time**: ~10 minutes | **First meaningful change**: ~5 minutes

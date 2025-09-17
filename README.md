@@ -32,7 +32,7 @@ The Universal Repository Onboarding Generator is an AI-powered tool that automat
 2. Run the command: `@workspace /repo-onboarding`
 3. Wait for analysis and documentation generation
 4. Find your onboarding documentation in `doc/onboarding/`
-5. Use the generated `.github/instructions/tech-leader-walkthrough.instructions.md` for AI-guided onboarding
+5. Use the generated `.github/prompts/ai-mentor.prompt.md` for AI-guided onboarding
 
 ## 📁 Generated Documentation Structure
 
@@ -57,7 +57,7 @@ doc/onboarding/
 
 ```
 .github/instructions/
-└── tech-leader-walkthrough.instructions.md # Interactive AI mentor (auto-activates)
+└── ai-mentor.prompt.md # Interactive AI mentor (auto-activates)
 ```
 
 ## 🤖 Interactive Tech Leader Experience
@@ -102,7 +102,7 @@ universal-repository-onboarding-generator/
 ├── build/
 │   └── build.js                                           # Build script for modular system
 ├── dist/                                                   # Generated prompt files (ignored in git)
-│   └── repository-onboarding-generator.instructions.md    # Built prompt
+│   └── repository-onboarding-generator.prompt.md    # Built prompt
 ├── doc/
 │   ├── repository-onboarding-generator.v1.0.0.spec.md    # Feature specifications (v1.0)
 │   ├── repository-onboarding-generator.v2.1.0.spec.md    # Feature specifications (v2.1)
@@ -119,7 +119,7 @@ universal-repository-onboarding-generator/
     │   ├── 06-validation-quality.md                       # Step 6: Validation
     │   ├── 07-execution-requirements.md                   # Execution Rules
     │   └── 99-footer.md                                   # Footer and output structure
-    └── repository-onboarding-generator.instructions.md    # Legacy monolithic version
+    └── repository-onboarding-generator.prompt.md    # Legacy monolithic version
 ```
 
 ## �️ Development & Build System

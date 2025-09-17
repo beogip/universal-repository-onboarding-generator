@@ -1,76 +1,136 @@
-# Universal Repository Onboarding Generator - Quick Start Guide
+# Universal Repository Onboarding Generator
+
+**AI-powered tool that automatically analyzes repositories and creates tailored onboarding documentation**
 
 ## 🚀 Quick Start (10 minutes)
 
-**Get your first repository documentation generated in under 10 minutes!**
+**Goal**: Generate your first repository onboarding documentation in under 10 minutes.
 
 ### What This Tool Does
 
-The Universal Repository Onboarding Generator automatically analyzes any repository and creates comprehensive, tailored onboarding documentation for new developers. It works with any technology stack and generates both static documentation and an interactive AI mentor.
+This is a **Documentation Generation Tool** built with **Node.js** that creates comprehensive onboarding guides for any repository. It uses a modular markdown system to build AI prompts that analyze codebases and generate tailored documentation.
 
-### ✅ Success Indicators
+### Instant Usage
 
-- ✅ You can run the prompt in VS Code with Copilot
-- ✅ Generated documentation appears in `doc/onboarding/`
-- ✅ Interactive Tech Leader activates when you ask for onboarding help
-- ✅ New developers can contribute within 4 hours using the generated docs
+1. Open any repository in VS Code with GitHub Copilot
+2. Run: `@workspace /repo-onboarding`
+3. Wait for analysis and documentation generation (2-5 minutes)
+4. Find your documentation in `doc/onboarding/`
 
-## 📋 Project Overview
+**✅ Success Indicator**: You should see generated files in `doc/onboarding/` with project-specific setup guides and examples.
 
-**Repository Type**: Documentation/Tool Repository  
-**Technology Stack**: Markdown, GitHub Copilot, AI Prompt Engineering  
-**Architecture Pattern**: Single-purpose AI tool with modular documentation
+## 📖 Project Overview
 
-### Core Components
+### Purpose
 
-1. **Main Prompt** (`src/repository-onboarding-generator.instructions.md`)
+The Universal Repository Onboarding Generator analyzes any repository structure, detects technologies, and creates comprehensive documentation that enables new developers to:
 
-   - The core AI prompt that analyzes repositories
-   - 6-step optimized workflow (v2.1 with auto-activation)
-   - Supports all repository types and tech stacks
-   - Generates Tech Leader with `applyTo: "**"` frontmatter
+- Understand the project in ≤ 20 minutes
+- Complete setup in ≤ 30 minutes
+- Make first meaningful contribution in ≤ 4 hours
 
-2. **Documentation Templates** (Generated Output)
+### How It Works
 
-   - Smart documentation structure in `doc/onboarding/`
-   - Interactive AI Tech Leader for guided onboarding
-   - Conditional file generation based on repository complexity
+**Modular Architecture**: The tool combines multiple markdown parts from `src/parts/` into a single AI prompt:
 
-3. **Feature Specifications** (`doc/*.spec.md`)
-   - Detailed feature requirements and design decisions
-   - Version history and implementation notes
-   - Success metrics and validation criteria
+- `00-header.md` through `99-footer.md` - Sequential documentation sections
+- `config.json` - Build configuration and template variables
+- `build/build.js` - Custom build script that processes and combines parts
 
-## 🎯 Key Features
+### Technology Stack
 
-- **Universal Compatibility**: Works with any repository type (web apps, APIs, data science, etc.)
-- **Smart Analysis**: Automatically detects technology stack and architecture patterns
-- **Objective-Driven**: Focuses on "first contribution within 4 hours" goal
-- **Interactive Mentoring**: Generates auto-activating AI Tech Leader for guided onboarding
-- **Quality Controlled**: Built-in validation with file-by-file content verification and cross-reference accuracy checks
+- **Language**: JavaScript (Node.js ≥16.0.0)
+- **Build System**: Custom build script using Node.js
+- **Package Manager**: Yarn (yarn.lock detected)
+- **Dependencies**: chokidar@^3.6.0 (file watching for development)
+- **Architecture**: Modular markdown parts system
 
-## 🔄 How It Works
+### Key Components
 
-1. **Establish Objectives**: Sets clear time-based goals and success metrics
-2. **Repository Analysis**: Detects tech stack, architecture, and project patterns
-3. **Documentation Strategy**: Determines which documentation files are needed
-4. **Content Generation**: Creates tailored documentation using real repository content
-5. **AI Integration**: Generates interactive Tech Leader walkthrough with auto-activation
-6. **Quality Validation**: File-by-file content verification ensures all generated documentation matches actual repository code and structure
+- **Source**: `src/parts/` - Modular markdown sections
+- **Build**: `build/build.js` - Template processor and file combiner
+- **Output**: `dist/repository-onboarding-generator.prompt.md` - Final AI prompt
+- **Config**: `src/parts/config.json` - Build settings and variables
 
-## 📚 Technical Terms Glossary
+## 🎯 Generated Documentation Structure
 
-- **Onboarding Documentation**: Structured guides to help new developers understand and contribute to a codebase
-- **Tech Leader Walkthrough**: AI-powered interactive mentor that guides developers through repository understanding
-- **Conditional Files**: Documentation files only generated if repository complexity justifies them
-- **Universal Compatibility**: Ability to work with any programming language or framework
+When you run this tool on a repository, it creates:
 
-## 🚀 Ready to Use?
+```
+doc/onboarding/
+├── README.md                 # Project overview & quick start
+├── setup-guide.md           # Installation & configuration
+├── examples/
+│   ├── basic-usage.md       # Simple examples
+│   └── advanced-workflows.md # Complex scenarios
+└── [additional files only if needed]
 
-**Next Steps:**
+.github/prompts/
+└── ai-mentor.prompt.md      # Interactive AI mentor
+```
 
-1. Review the setup guide for detailed usage instructions
-2. Check out examples for common use cases
-3. Try the interactive Tech Leader by asking Copilot for onboarding help
+## ⚙️ Development Commands
 
-**Time Estimate**: 30 minutes to become fully productive with this tool
+Based on package.json scripts analysis:
+
+```bash
+# Install dependencies
+yarn install
+
+# Development build (with file watching)
+yarn dev                    # Same as: yarn clean && yarn build:dev
+
+# Production build
+yarn build                  # Build final prompt file
+yarn prod                   # Same as: yarn clean && yarn build
+
+# Development with auto-rebuild
+yarn watch                  # Watch for changes and rebuild
+
+# Clean output
+yarn clean                  # Remove dist/ files
+```
+
+**✅ Success Indicator**: Running `yarn build` should create `dist/repository-onboarding-generator.prompt.md`
+
+## 🏗️ Architecture Overview
+
+**Data Flow**:
+
+1. Build script reads all files in `src/parts/` (00-header.md → 99-footer.md)
+2. Processes template variables from `config.json`
+3. Combines parts into single prompt file
+4. Outputs to `dist/repository-onboarding-generator.prompt.md`
+
+**Template System**:
+
+- Variables in `{{VARIABLE}}` format are replaced during build
+- Automatic variables: `{{DATE}}`, `{{BUILD_DATE}}`, `{{TIMESTAMP}}`
+- Custom variables defined in `config.json`
+
+## 📋 Key Files Reference
+
+- `package.json` - Dependencies and scripts (main: "build/index.js")
+- `build/build.js` - Main build logic and template processing
+- `src/parts/config.json` - Build configuration (version: 2.2.0)
+- `src/parts/*.md` - Sequential markdown parts for prompt building
+- `dist/` - Output directory (gitignored)
+
+## 🎓 Learning Path
+
+**New to the project?**
+
+1. **First**: Read this README (5 minutes)
+2. **Next**: Follow [setup-guide.md](setup-guide.md) (15 minutes)
+3. **Then**: Try [examples/basic-usage.md](examples/basic-usage.md) (10 minutes)
+4. **Finally**: Explore advanced customization options
+
+**Quick Contribution Ideas**:
+
+- Add new markdown parts in `src/parts/`
+- Improve template variables in `config.json`
+- Enhance build script functionality in `build/build.js`
+
+---
+
+**Total reading time**: ~8 minutes | **Setup time**: ~15 minutes | **First contribution**: ~30 minutes

@@ -14,7 +14,7 @@ doc/onboarding/
 └── [conditional files based on analysis]
 
 .github/instructions/
-└── tech-leader-walkthrough.instructions.md (Auto-activated interactive guide)
+└── ai-mentor.prompt.md (Auto-activated interactive guide)
 ```
 
 **Success Criteria:**

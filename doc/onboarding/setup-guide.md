@@ -1,130 +1,176 @@
-# Setup Guide - Universal Repository Onboarding Generator
+# Setup Guide
 
-## Essential Setup (≤ 30 minutes)
+Based on analysis findings and strategy: Using Node.js ≥16.0.0 requirement from REPOSITORY ANALYSIS SUMMARY engines field, Yarn package manager from yarn.lock detection, and DEVELOPMENT COMMANDS from package.json scripts.
 
-### Prerequisites ⏱️ 5 minutes
+## 🚀 Essential Setup (15 minutes)
 
-**Required:**
+### Prerequisites Verification
 
-- ✅ VS Code installed
-- ✅ GitHub Copilot extension active
-- ✅ Access to target repository (public or private)
+**Node.js Requirement**: ≥16.0.0 (verified from package.json engines field)
 
-**System Requirements:**
+```bash
+# Check your Node.js version
+node --version
+# Should show v16.0.0 or higher
+```
 
-- Any operating system (Windows, macOS, Linux)
-- No additional installations required
-- Works entirely within VS Code environment
+**✅ Success Indicator**: Version shows v16.x.x or higher
 
-### Step 1: Get the Prompt ⏱️ 3 minutes
+**If Node.js needs installation**:
 
-**Option A: Use from this repository**
+- Download from [nodejs.org](https://nodejs.org)
+- Choose LTS version (recommended)
+- Restart terminal after installation
 
-1. Navigate to `src/repository-onboarding-generator.instructions.md`
-2. Copy the entire prompt content
-3. You're ready to use it in any repository
+### Package Manager Setup
 
-**Option B: Direct execution (if available)**
+**Yarn Required** (detected from yarn.lock file presence):
 
-- Some configurations may support: `@workspace /repo-onboarding`
-  - This option is available if your Copilot environment supports slash commands (e.g., in Copilot Chat for VS Code Insiders or GitHub Codespaces with Copilot Chat enabled).
-  - To check availability: In Copilot Chat, type `/` and see if `/repo-onboarding` appears in the autocomplete list. If not, use Option A.
+```bash
+# Install Yarn globally if not present
+npm install -g yarn
 
-### Step 2: Target Repository Setup ⏱️ 2 minutes
+# Verify installation
+yarn --version
+```
 
-1. **Open target repository** in VS Code
-2. **Ensure Copilot is active** (check status bar)
-3. **Verify repository access** (can read files and structure)
+**✅ Success Indicator**: Yarn version displays (any recent version works)
 
-### Step 3: Execute the Generator ⏱️ 15 minutes
+### Repository Setup
 
-1. **Start new Copilot conversation**
-2. **Paste the full prompt** from `src/repository-onboarding-generator.instructions.md`
-3. **Wait for analysis** (typically 10-15 minutes depending on repository size)
-4. **Review generated files** in `doc/onboarding/` and `.github/instructions/`
+**1. Clone & Navigate** (2 minutes):
 
-### Step 4: Verify Setup ⏱️ 5 minutes
+```bash
+git clone [repository-url]
+cd universal-repository-onboarding-generator
+```
 
-**Check generated documentation:**
+**2. Install Dependencies** (3 minutes):
 
-- ✅ `doc/onboarding/README.md` exists with project overview
-- ✅ `doc/onboarding/setup-guide.md` exists with setup instructions
-- ✅ `doc/onboarding/examples/` folder contains usage examples
-- ✅ `.github/instructions/tech-leader-walkthrough.instructions.md` exists
+```bash
+yarn install
+```
 
-**Test interactive Tech Leader:**
+**✅ Success Indicator**: No error messages, `node_modules/` directory created
 
-- ✅ Ask Copilot: "help me understand this codebase"
-- ✅ Tech Leader should activate automatically (thanks to `applyTo: '**'` frontmatter)
-- ✅ Follow the 4-phase interactive walkthrough
+**3. Verify Build System** (2 minutes):
 
-**Tech Leader Auto-Activation:**
-The generated `.github/instructions/tech-leader-walkthrough.instructions.md` file includes frontmatter (`applyTo: '**'`) that makes it automatically available across the repository when users request onboarding help.
+```bash
+yarn build
+```
 
-## Complete Setup (Additional Options)
+**✅ Success Indicator**: `dist/repository-onboarding-generator.prompt.md` file created
 
-### Advanced Usage Patterns
+## 🎯 First Prompt Generation (10 minutes)
 
-**For Team Environments:**
+### Understanding the Build Process
 
-- Share the generated documentation with team members
-- Customize examples with team-specific workflows
-- Update documentation as repository evolves
+**Development vs Production builds**:
 
-**For Multiple Repositories:**
+- `yarn dev` - Clean + development build with detailed logging
+- `yarn build` - Production build for final prompt
+- `yarn watch` - Auto-rebuild on file changes (great for development)
 
-- Save the prompt for reuse across projects
-- Create documentation standards based on generated output
-- Establish onboarding metrics using generated success criteria
+### Generate Your First Build
 
-### Troubleshooting Common Issues
+**Step 1: Clean Build**:
 
-**Issue 1: Prompt doesn't execute properly**
+```bash
+yarn clean
+yarn build
+```
 
-- ✅ **Solution**: Ensure entire prompt is copied (check for truncation)
-- ✅ **Verification**: Prompt should start with "You are an expert repository analysis"
+**Step 2: Verify Output**:
 
-**Issue 2: Incomplete documentation generation**
+```bash
+ls -la dist/
+# Should show: repository-onboarding-generator.prompt.md
+```
 
-- ✅ **Solution**: Repository may be too complex - try with smaller codebase first
-- ✅ **Verification**: Check if at least 3 core files were generated
+**Step 3: Inspect Generated Prompt**:
 
-**Issue 3: Tech Leader doesn't activate**
+```bash
+head -20 dist/repository-onboarding-generator.prompt.md
+```
 
-- ✅ **Solution**: Verify `.github/instructions/` file exists and ask specific onboarding questions
-- ✅ **Verification**: Try phrases like "repository walkthrough" or "onboarding guidance"
+**✅ Success Indicator**: File contains header with version 2.2.0 and current build date
 
-### Validation Checklist
+### Development Workflow Setup
 
-Before considering setup complete:
+**For Active Development**:
 
-- [ ] Can generate documentation for a test repository
-- [ ] Generated documentation is relevant to repository content
-- [ ] Interactive Tech Leader responds to onboarding requests
-- [ ] Documentation follows the expected structure
-- [ ] Time estimates in generated docs are reasonable
+```bash
+# Start watch mode (rebuilds on changes)
+yarn watch
+```
 
-## Next Steps
+Keep this running in a terminal. Edit any file in `src/parts/` and the prompt rebuilds automatically.
 
-1. **Try with a simple repository first** (recommended: small open-source project)
-2. **Review generated documentation quality**
-3. **Test interactive Tech Leader experience**
-4. **Customize templates as needed for your team**
-5. **Scale to larger, more complex repositories**
+## 🛠️ Configuration Understanding
 
-**Total Setup Time**: Essential setup should take ≤ 30 minutes. Complete setup and customization may take up to 1-2 hours depending on your specific requirements.
+### Key Configuration Files
 
-## Support & Customization
+**src/parts/config.json** (build settings):
 
-**Generated Documentation Structure:**
+- Controls part order and processing
+- Defines template variables
+- Current version: 2.2.0
 
-- All documentation follows consistent patterns
-- Examples use actual repository content (never fictional)
-- Interactive elements designed for practical learning
+**package.json** (project settings):
 
-**Customization Options:**
+- Scripts definitions
+- Node.js version requirement (≥16.0.0)
+- Dependencies: chokidar@^3.6.0
 
-- Edit any generated markdown files
-- Add team-specific examples and workflows
-- Update setup instructions for specialized environments
-- Include organization-specific resources and tools
+### Directory Structure Overview
+
+```
+src/parts/           # Source markdown parts
+├── 00-header.md     # Prompt header
+├── 01-establish-objectives.md
+├── 02-repository-analysis.md
+├── [more parts...]
+├── 99-footer.md     # Prompt footer
+└── config.json      # Build configuration
+
+build/build.js       # Main build script
+dist/               # Output (created after build)
+```
+
+## 🔧 Common Setup Issues
+
+**Issue**: `yarn: command not found`
+**Solution**: Install Yarn globally: `npm install -g yarn`
+
+**Issue**: Node.js version too old
+**Solution**: Update to Node.js ≥16.0.0 from nodejs.org
+
+**Issue**: Build fails with file permission errors
+**Solution**: Check write permissions for `dist/` directory
+
+**Issue**: `chokidar` dependency issues on watch
+**Solution**: Delete `node_modules/` and run `yarn install` again
+
+## ✅ Setup Validation
+
+**Complete Setup Checklist**:
+
+- ✅ Node.js ≥16.0.0 installed and verified
+- ✅ Yarn package manager available
+- ✅ Repository cloned and dependencies installed
+- ✅ Successfully run `yarn build` with no errors
+- ✅ Generated `dist/repository-onboarding-generator.prompt.md` exists
+- ✅ File contains current date and version 2.2.0
+
+**Time Check**: Essential setup should take ≤ 15 minutes
+
+## 🎓 Next Steps
+
+1. **Try Examples**: Go to [examples/basic-usage.md](examples/basic-usage.md)
+2. **Understand Parts**: Explore `src/parts/` directory structure
+3. **Make Changes**: Edit a part file and run `yarn watch` to see rebuilds
+4. **First Contribution**: Improve documentation or add new features
+
+---
+
+**Setup time**: ~15 minutes | **Validation time**: ~3 minutes

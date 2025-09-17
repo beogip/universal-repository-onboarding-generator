@@ -22,6 +22,11 @@
   - Examine .gitignore, .env.example, config files, docker files
   - Read actual build configurations (webpack, vite, etc.)
   - Check CI/CD files (.github/workflows, .gitlab-ci.yml, etc.)
+- **Documentation Folders Exploration**:
+  - Scan doc/, docs/, documentation/ folders if they exist
+  - Read specification files, architectural documents, or design docs
+  - Check for API documentation, user guides, or developer guides
+  - Look for version history, changelogs, or release notes
 
 **2.2 Technology Stack Detection (Evidence-Based):**
 
@@ -47,7 +52,11 @@
 - **Development Commands**: Identify actual dev server, build, and test commands
 - **Environment Setup**: Check for environment variable requirements
 - **Database Setup**: Look for migration files, seed data, or setup scripts
-- **Documentation Review**: Read existing README, CONTRIBUTING.md, or docs/ folder
+- **Documentation Review**:
+  - Read existing README.md, CONTRIBUTING.md files in root
+  - Examine doc/, docs/, documentation/ folders for specifications, guides, or architectural documentation
+  - Look for API documentation, feature specifications, or design documents
+  - Check for changelog, versioning, or release documentation
 
 **2.5 Repository Characteristics Assessment:**
 
@@ -104,6 +113,7 @@ Based on your actual repository inspection, create this exact structured summary
 - Main entry point: [actual main file from package.json or observed]
 - Source code location: [src/, lib/, app/, etc. - actual path]
 - Tests location: [test/, spec/, __tests__, etc. - if found]
+- Documentation location: [doc/, docs/, documentation/, etc. - if found]
 - Configuration files: [list actual config files found]
 
 ⚙️ DEVELOPMENT COMMANDS (VERIFIED):
@@ -130,6 +140,8 @@ Based on your actual repository inspection, create this exact structured summary
 
 ❌ GAPS IDENTIFIED:
 - Missing information: [list what couldn't be found in repository]
+- Existing documentation: [list documentation files/folders found and their content scope]
+- Documentation gaps: [identify what documentation is missing vs what exists]
 - Assumptions avoided: [note what you did NOT assume]
 ```
 
