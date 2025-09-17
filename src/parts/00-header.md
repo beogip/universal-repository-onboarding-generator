@@ -1,6 +1,6 @@
 # Universal Repository Onboarding Generator v{{VERSION}}
 
-**Prompt ID**: `@workspace /repo-onboarding`  
+**Prompt ID**: `/repository-onboarding-generator`  
 **Last Updated**: {{DATE}}  
 **Build Date**: {{BUILD_DATE}}
 
@@ -8,7 +8,7 @@
 
 ## How to Execute
 
-Run this prompt in any repository: `@workspace /repo-onboarding`
+Run this prompt in any repository: `/repository-onboarding-generator`
 
 ## Universal Prompt Implementation
 

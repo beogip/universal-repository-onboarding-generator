@@ -29,10 +29,11 @@ The Universal Repository Onboarding Generator is an AI-powered tool that automat
 ### Usage
 
 1. Open any repository in VS Code
-2. Run the command: `@workspace /repo-onboarding`
-3. Wait for analysis and documentation generation
-4. Find your onboarding documentation in `doc/onboarding/`
-5. Use the generated `.github/prompts/ai-mentor.prompt.md` for AI-guided onboarding
+2. Copy the file `repository-onboarding-generator.prompt.md` into `.github/prompts`
+3. Run the command: `/repository-onboarding-generator` in your Copilot chat
+4. Wait for analysis and documentation generation
+5. Find your onboarding documentation in `doc/onboarding/`
+6. Use the generated `.github/prompts/ai-mentor.prompt.md` for AI-guided onboarding
 
 ## 📁 Generated Documentation Structure
 
@@ -260,4 +261,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Ready to revolutionize your repository onboarding?**
-Run `@workspace /repo-onboarding` in any repository and experience the future of developer onboarding!
+Run `/repository-onboarding-generator` in any repository and experience the future of developer onboarding!
