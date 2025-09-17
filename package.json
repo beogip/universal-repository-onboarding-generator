@@ -7,7 +7,7 @@
     "build": "node build/build.js",
     "build:dev": "node build/build.js --dev",
     "watch": "node build/build.js --watch",
-    "clean": "rm -f src/repository-onboarding-generator.instructions.md",
+    "clean": "rm -f dist/repository-onboarding-generator.prompt.md",
     "dev": "yarn clean && yarn build:dev",
     "prod": "yarn clean && yarn build"
   },

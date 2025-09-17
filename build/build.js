@@ -11,7 +11,7 @@ class PromptBuilder {
     this.srcDir = path.join(process.cwd(), 'src');
     this.partsDir = path.join(this.srcDir, 'parts');
     this.distDir = path.join(process.cwd(), 'dist');
-    this.outputFile = path.join(this.distDir, 'repository-onboarding-generator.instructions.md');
+    this.outputFile = path.join(this.distDir, 'repository-onboarding-generator.prompt.md');
     this.configFile = path.join(this.partsDir, 'config.json');
   }
 
