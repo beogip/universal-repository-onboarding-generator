@@ -98,14 +98,57 @@ The generator automatically adapts to various repository types:
 universal-repository-onboarding-generator/
 ├── README.md                                               # This file
 ├── LICENSE                                                 # MIT License
+├── package.json                                            # Build system dependencies
+├── build/
+│   └── build.js                                           # Build script for modular system
+├── dist/                                                   # Generated prompt files (ignored in git)
+│   └── repository-onboarding-generator.instructions.md    # Built prompt
 ├── doc/
-│   └── repository-onboarding-generator.v1.0.0.spec.md    # Feature specifications
+│   ├── repository-onboarding-generator.v1.0.0.spec.md    # Feature specifications (v1.0)
+│   ├── repository-onboarding-generator.v2.1.0.spec.md    # Feature specifications (v2.1)
+│   └── onboarding/                                        # Generated documentation examples
 └── src/
-    ├── repository-onboarding-generator.instructions.md    # Main prompt (v2.1 with applyTo frontmatter)
-    └── repository-onboarding-generator-backup.instructions.md  # Original version
+    ├── parts/                                             # Modular prompt components
+    │   ├── config.json                                    # Build configuration
+    │   ├── 00-header.md                                   # Prompt header and metadata
+    │   ├── 01-establish-objectives.md                     # Step 1: Objectives
+    │   ├── 02-repository-analysis.md                      # Step 2: Analysis
+    │   ├── 03-documentation-strategy.md                   # Step 3: Strategy
+    │   ├── 04-content-creation.md                         # Step 4: Content Creation
+    │   ├── 05-copilot-integration.md                      # Step 5: AI Integration
+    │   ├── 06-validation-quality.md                       # Step 6: Validation
+    │   ├── 07-execution-requirements.md                   # Execution Rules
+    │   └── 99-footer.md                                   # Footer and output structure
+    └── repository-onboarding-generator.instructions.md    # Legacy monolithic version
 ```
 
-## 🔄 Version History
+## �️ Development & Build System
+
+The repository uses a modular build system that assembles the final prompt from individual markdown components.
+
+### Build Commands
+
+```bash
+# Install dependencies
+yarn install
+
+# Build the complete prompt
+yarn build
+
+# Watch for changes and rebuild automatically
+yarn watch
+```
+
+### Modular Architecture
+
+- **Source**: Individual `.md` files in `src/parts/` for each step and component
+- **Configuration**: `src/parts/config.json` defines assembly order and metadata
+- **Output**: Built prompt generated in `dist/` directory
+- **Watch Mode**: Automatic rebuilding when any source file changes
+
+This architecture makes the prompt easier to maintain, test, and extend compared to the original monolithic file.
+
+## �🔄 Version History
 
 ### v2.1.0 (September 2025) - **Current** 🆕
 
