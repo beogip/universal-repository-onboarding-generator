@@ -110,6 +110,65 @@ Before proceeding to STEP 3, ensure:
 - Inventing commands, dependencies, or configurations
 - Creating documentation based on "typical" patterns rather than actual ones
 
+**2.7 MANDATORY REPOSITORY ANALYSIS SUMMARY:**
+
+**🚨 CRITICAL: BEFORE PROCEEDING TO STEP 3, YOU MUST CREATE THIS STRUCTURED SUMMARY**
+
+Based on your actual repository inspection, create this exact structured summary:
+
+```
+📋 REPOSITORY ANALYSIS SUMMARY
+=================================
+
+🏗️ PROJECT IDENTIFICATION:
+- Project Name: [from package.json name or repository name]
+- Project Type: [e.g., web application, API, library, etc. - based on structure observed]
+- Main Purpose: [from README.md or inferred from main files]
+
+🔧 TECHNOLOGY STACK (VERIFIED):
+- Primary Language(s): [list based on file extensions found]
+- Framework(s): [from dependencies in package files]
+- Build Tool: [from package.json scripts, Makefile, etc.]
+- Package Manager: [npm, yarn, pip, etc. - detected from lock files]
+- Testing Framework: [from devDependencies or test directories]
+- Database: [if connection files or schemas found, otherwise "None detected"]
+
+📁 DIRECTORY STRUCTURE (ACTUAL):
+- Root level directories: [list actual directories found]
+- Main entry point: [actual main file from package.json or observed]
+- Source code location: [src/, lib/, app/, etc. - actual path]
+- Tests location: [test/, spec/, __tests__, etc. - if found]
+- Configuration files: [list actual config files found]
+
+⚙️ DEVELOPMENT COMMANDS (VERIFIED):
+- Install dependencies: [actual command from package manager detected]
+- Development server: [from package.json scripts or documentation]
+- Build command: [from package.json scripts if exists]
+- Test command: [from package.json scripts if exists]
+- Other available scripts: [list from package.json scripts section]
+
+🏛️ ARCHITECTURE PATTERN (OBSERVED):
+- Code organization: [describe actual structure observed]
+- Key components: [list main directories/files that indicate architecture]
+- Data flow: [if observable from code structure]
+
+📋 DEPENDENCIES (EXACT):
+- Production dependencies: [list key ones from package.json]
+- Development dependencies: [list key ones from devDependencies]
+- Versions: [note if specific version constraints observed]
+
+🚀 QUICK START REQUIREMENTS (FOUND):
+- Prerequisites: [from engines, README, or inferred from dependencies]
+- Environment variables: [from .env.example or code examination]
+- Initial setup steps: [from README or scripts examination]
+
+❌ GAPS IDENTIFIED:
+- Missing information: [list what couldn't be found in repository]
+- Assumptions avoided: [note what you did NOT assume]
+```
+
+**THIS SUMMARY WILL BE USED AS THE SINGLE SOURCE OF TRUTH FOR ALL DOCUMENTATION CREATION IN STEP 4**
+
 ### STEP 3: Smart Documentation Generation Strategy
 
 Based on analysis, determine documentation structure in `doc/onboarding/`:
@@ -132,9 +191,78 @@ Based on analysis, determine documentation structure in `doc/onboarding/`:
 
 **STRICT RULE**: Prefer consolidating information in CORE files over creating additional files. Only create conditional files if the information cannot reasonably fit in README.md or setup-guide.md.
 
+**3.1 MANDATORY DOCUMENTATION STRATEGY SUMMARY:**
+
+**🚨 CRITICAL: BEFORE PROCEEDING TO STEP 4, YOU MUST CREATE THIS STRUCTURED STRATEGY SUMMARY**
+
+Based on the REPOSITORY ANALYSIS SUMMARY, create this exact structured strategy:
+
+```
+📋 DOCUMENTATION STRATEGY SUMMARY
+=====================================
+
+📁 FILES TO CREATE (JUSTIFIED):
+
+CORE FILES (Always created):
+✅ README.md
+   - Purpose: [based on project type from REPOSITORY ANALYSIS SUMMARY]
+   - Content focus: [based on main purpose and tech stack from analysis]
+   - Estimated lines: [realistic estimate ≤150 lines]
+
+✅ setup-guide.md
+   - Purpose: [based on complexity and dependencies from analysis]
+   - Content focus: [based on development commands and requirements from analysis]
+   - Estimated lines: [realistic estimate ≤150 lines for essential setup]
+
+✅ examples/ folder
+   - Purpose: [based on project type and architecture from analysis]
+   - Content focus: [based on key components and entry points from analysis]
+   - Files planned: [1-2 files unless complexity justifies more]
+
+✅ .github/instructions/tech-leader-walkthrough.instructions.md
+   - Purpose: Interactive AI mentor for repository onboarding
+   - Customization: [based on detected tech stack and architecture from analysis]
+
+CONDITIONAL FILES (Only if justified):
+[If creating any, list here with explicit justification from REPOSITORY ANALYSIS SUMMARY]
+❌ development-workflow.md: [ONLY if justified - explain why based on analysis]
+❌ troubleshooting.md: [ONLY if justified - explain why based on analysis]
+❌ architecture-overview.md: [ONLY if justified - explain why based on analysis]
+
+🎯 CONTENT ALLOCATION STRATEGY:
+
+README.md will include:
+- [list specific sections based on REPOSITORY ANALYSIS SUMMARY]
+
+setup-guide.md will include:
+- [list specific sections based on REPOSITORY ANALYSIS SUMMARY]
+
+examples/ will include:
+- [list specific examples based on REPOSITORY ANALYSIS SUMMARY]
+
+📏 SIZE VALIDATION:
+- Total estimated lines: [sum of all files, must be ≤800 lines]
+- Consolidation decisions: [explain any information moved between files]
+
+🔗 CROSS-REFERENCE PLAN:
+- Internal links planned: [list planned links between documentation files]
+- External references: [only to actual files found in REPOSITORY ANALYSIS SUMMARY]
+```
+
+**THIS STRATEGY SUMMARY WILL GUIDE ALL FILE CREATION IN STEP 4**
+
 ### STEP 4: Technology-Specific Content Creation
 
-Generate all documentation files with content tailored to detected technologies:
+**🚨 MANDATORY PREREQUISITES: REFERENCE BOTH SUMMARIES**
+
+Before creating ANY documentation file, you MUST:
+
+1. **Review the REPOSITORY ANALYSIS SUMMARY** created in STEP 2
+2. **Review the DOCUMENTATION STRATEGY SUMMARY** created in STEP 3
+3. **Use ONLY information from those summaries** - no additional assumptions
+4. **Start each file creation with "Based on analysis findings and strategy:"** followed by specific references to both summaries
+
+**STRICT RULE: If information is not in the REPOSITORY ANALYSIS SUMMARY or DOCUMENTATION STRATEGY SUMMARY, do not include it in documentation**
 
 **🚨 MANDATORY CONTENT SOURCING: ALL INFORMATION MUST BE REPOSITORY-SPECIFIC**
 
@@ -142,85 +270,98 @@ Generate all documentation files with content tailored to detected technologies:
 
 **README.md Requirements:**
 
-- **Project Description**: Based on actual README.md, package.json description, or main files inspection
-- **Technology Stack**: ONLY list technologies found in STEP 2 analysis with evidence
-- **Architecture Overview**: Based on actual directory structure and code patterns observed
-- **Quick Start Commands**: Use ACTUAL commands from package.json scripts or found documentation
+**MUST START WITH**: "Based on analysis findings and strategy: [reference specific items from both REPOSITORY ANALYSIS SUMMARY and DOCUMENTATION STRATEGY SUMMARY]"
+
+- **File Structure**: Follow content allocation from DOCUMENTATION STRATEGY SUMMARY
+- **Project Description**: Use ONLY "Project Name" and "Main Purpose" from REPOSITORY ANALYSIS SUMMARY
+- **Technology Stack**: Use ONLY "TECHNOLOGY STACK (VERIFIED)" section from REPOSITORY ANALYSIS SUMMARY
+- **Architecture Overview**: Use ONLY "ARCHITECTURE PATTERN (OBSERVED)" from REPOSITORY ANALYSIS SUMMARY
+- **Quick Start Commands**: Use ONLY "DEVELOPMENT COMMANDS (VERIFIED)" from REPOSITORY ANALYSIS SUMMARY
+- **Line Limit**: Respect estimated lines from DOCUMENTATION STRATEGY SUMMARY (≤150 lines)
 - Include prominent "🚀 Quick Start (10 minutes)" section at the top
 - Structure with progressive complexity: Simple overview → Quick start → Detailed info
-- Maximum 150 lines total (consolidate, don't fragment)
 - Include glossary of technical terms inline
 - Add "✅ Success Indicators" for each major step
 
 **setup-guide.md Requirements:**
 
-- **Prerequisites**: Based on engines field, runtime versions, or system requirements found
-- **Installation Commands**: Use ACTUAL package manager detected (npm, yarn, pip, etc.)
-- **Configuration Steps**: Based on ACTUAL config files found (.env.example, config/, etc.)
-- **Environment Variables**: Only include those found in .env.example or documented
-- **Database Setup**: Only if database migrations, schemas, or connection configs were found
-- **Development Server**: Use ACTUAL scripts from package.json or documented commands
+**MUST START WITH**: "Based on analysis findings and strategy: [reference specific items from both summaries]"
+
+- **File Structure**: Follow content allocation from DOCUMENTATION STRATEGY SUMMARY
+- **Prerequisites**: Use ONLY "QUICK START REQUIREMENTS (FOUND)" section from REPOSITORY ANALYSIS SUMMARY
+- **Installation Commands**: Use ONLY "Package Manager" and "Install dependencies" from REPOSITORY ANALYSIS SUMMARY
+- **Configuration Steps**: Use ONLY "Configuration files" and "Environment variables" from REPOSITORY ANALYSIS SUMMARY
+- **Environment Variables**: Use ONLY those listed in "Environment variables" from REPOSITORY ANALYSIS SUMMARY
+- **Database Setup**: Use ONLY if "Database" is detected in TECHNOLOGY STACK section (not "None detected")
+- **Development Server**: Use ONLY "Development server" command from REPOSITORY ANALYSIS SUMMARY
+- **Line Limit**: Respect estimated lines from DOCUMENTATION STRATEGY SUMMARY (≤150 lines for essential setup)
 - Focus on "minimal viable setup" first (should take ≤ 30 minutes)
 - Include "Essential Setup" vs "Complete Setup" sections
-- Maximum 150 lines for essential setup
 - Include troubleshooting for 3 most common issues inline
 - Add time estimates for each step
 
 **examples/ Requirements:**
 
-- **Code Examples**: Reference ACTUAL functions, classes, or components from the codebase
-- **API Endpoints**: Only document endpoints that exist in route files or API definitions
-- **Configuration Examples**: Use ACTUAL config file formats found in repository
-- **Import Statements**: Use correct module names and paths from actual code
-- Include practical "first contribution" example
-- Show complete request/response cycles
-- Maximum 2 example files unless justified
+**MUST START WITH**: "Based on analysis findings and strategy: [reference specific items from both summaries]"
+
+- **File Structure**: Follow content allocation from DOCUMENTATION STRATEGY SUMMARY
+- **Number of Files**: Respect files planned in DOCUMENTATION STRATEGY SUMMARY
+- **Code Examples**: Use ONLY "Key components" and "Main entry point" from REPOSITORY ANALYSIS SUMMARY
+- **API Endpoints**: Use ONLY if API structure is observable in "ARCHITECTURE PATTERN (OBSERVED)"
+- **Configuration Examples**: Use ONLY "Configuration files" formats from REPOSITORY ANALYSIS SUMMARY
+- **Import Statements**: Use ONLY "Source code location" and actual structure from REPOSITORY ANALYSIS SUMMARY
+- Include practical "first contribution" example based on actual project structure
+- Show complete request/response cycles only if API endpoints are confirmed in analysis
+- Respect file limits from DOCUMENTATION STRATEGY SUMMARY (typically 1-2 files)
 
 **REPOSITORY-SPECIFIC IMPLEMENTATION REQUIREMENTS:**
 
 **For README.md:**
 
-- ✅ Project purpose matches actual repository content and existing README
-- ✅ Technology versions match package.json or dependency files
-- ✅ Quick start commands work with actual project structure
-- ✅ All mentioned directories and files actually exist
-- ✅ Architecture description matches observed code organization
+- ✅ Project purpose matches "Main Purpose" from REPOSITORY ANALYSIS SUMMARY
+- ✅ Technology versions match "DEPENDENCIES (EXACT)" from REPOSITORY ANALYSIS SUMMARY
+- ✅ Quick start commands use only "DEVELOPMENT COMMANDS (VERIFIED)" from REPOSITORY ANALYSIS SUMMARY
+- ✅ All mentioned directories use only "DIRECTORY STRUCTURE (ACTUAL)" from REPOSITORY ANALYSIS SUMMARY
+- ✅ Architecture description uses only "ARCHITECTURE PATTERN (OBSERVED)" from REPOSITORY ANALYSIS SUMMARY
 
 **For setup-guide.md:**
 
-- ✅ Installation commands match detected package manager and dependencies
-- ✅ Port numbers and URLs match actual configuration files
-- ✅ Environment variables exist in .env.example or are documented
-- ✅ Database commands match actual migration or setup scripts found
-- ✅ Build and run scripts exist in package.json or documented workflows
+- ✅ Installation commands use only "Package Manager" from REPOSITORY ANALYSIS SUMMARY
+- ✅ Port numbers and URLs use only information from "Configuration files" in REPOSITORY ANALYSIS SUMMARY
+- ✅ Environment variables use only those listed in REPOSITORY ANALYSIS SUMMARY
+- ✅ Database commands use only if "Database" detected (not "None detected") in REPOSITORY ANALYSIS SUMMARY
+- ✅ Build and run scripts use only "DEVELOPMENT COMMANDS (VERIFIED)" from REPOSITORY ANALYSIS SUMMARY
 
 **For examples/ files:**
 
-- ✅ All code snippets reference actual files, functions, or classes in the repository
-- ✅ Import paths are correct and point to existing modules
-- ✅ API endpoints exist in actual route definitions
-- ✅ Configuration examples match actual config file structure and format
-- ✅ No fictional or generic examples that don't relate to the actual codebase
+- ✅ All code snippets reference only "Key components" from REPOSITORY ANALYSIS SUMMARY
+- ✅ Import paths use only "Source code location" from REPOSITORY ANALYSIS SUMMARY
+- ✅ API endpoints use only if confirmed in "ARCHITECTURE PATTERN (OBSERVED)" from REPOSITORY ANALYSIS SUMMARY
+- ✅ Configuration examples use only "Configuration files" formats from REPOSITORY ANALYSIS SUMMARY
+- ✅ No fictional or generic examples - only examples based on REPOSITORY ANALYSIS SUMMARY findings
 
 **FINAL IMPLEMENTATION CHECKLIST:**
 
 Before creating any documentation file, verify:
 
-- ✅ All information has been extracted from actual repository inspection
-- ✅ No assumptions or generic patterns have been used
-- ✅ All commands, dependencies, and configurations are real and verified
-- ✅ Examples reference actual code in the repository
-- ✅ Technology stack accurately reflects detected tools and frameworks
-- ✅ Architecture description matches observed directory and code structure
+- ✅ **REPOSITORY ANALYSIS SUMMARY has been created and reviewed**
+- ✅ **All information comes exclusively from the REPOSITORY ANALYSIS SUMMARY**
+- ✅ **Each file starts with "Based on analysis findings:" followed by specific references**
+- ✅ **No information outside the REPOSITORY ANALYSIS SUMMARY has been used**
+- ✅ **Any gaps acknowledged in REPOSITORY ANALYSIS SUMMARY are mentioned, not filled with assumptions**
+- ✅ **All commands, dependencies, and configurations are exactly as listed in REPOSITORY ANALYSIS SUMMARY**
 
 **STRICT ENFORCEMENT:**
 
-- Create all CORE files with repository-specific content ONLY
-- Create only justified CONDITIONAL files (maximum 2-3)
-- Include specific setup commands found in actual scripts or documentation
-- Provide real examples from actual codebase (never create fictional code)
-- Make documentation beginner-friendly but comprehensive and factually accurate
-- If information is not available in repository, acknowledge gap rather than invent
+- **MANDATORY**: Create REPOSITORY ANALYSIS SUMMARY in STEP 2 before any content creation
+- **MANDATORY**: Reference REPOSITORY ANALYSIS SUMMARY explicitly in each documentation file
+- **MANDATORY**: Start each documentation file with "Based on analysis findings:" + specific references
+- Create all CORE files using ONLY information from REPOSITORY ANALYSIS SUMMARY
+- Create only justified CONDITIONAL files (maximum 2-3) based on complexity noted in REPOSITORY ANALYSIS SUMMARY
+- Include ONLY setup commands listed in "DEVELOPMENT COMMANDS (VERIFIED)" section
+- Provide ONLY examples referencing components listed in REPOSITORY ANALYSIS SUMMARY
+- Make documentation beginner-friendly but use ONLY factual information from REPOSITORY ANALYSIS SUMMARY
+- **If information is not in REPOSITORY ANALYSIS SUMMARY, acknowledge gap - do not invent**
 
 ### STEP 5: GitHub Copilot Instructions Generation
 
@@ -463,8 +604,63 @@ Before completion, validate:
 - ✅ No outdated or incorrect information about the repository structure
 - ✅ All mentioned tools, frameworks, and libraries are actually used in the project
 
+**6.1 MANDATORY VALIDATION RESULTS SUMMARY:**
+
+**🚨 CRITICAL: BEFORE COMPLETION REPORT, YOU MUST CREATE THIS VALIDATION SUMMARY**
+
+Document all validation results in this structured format:
+```
+
+# 📋 VALIDATION RESULTS SUMMARY
+
+🔍 CONTENT ACCURACY VALIDATION RESULTS:
+
+README.md Validation:
+✅/❌ Project description matches repository analysis: [result with details]
+✅/❌ Technology stack accurate: [result with specific items verified]
+✅/❌ Quick Start commands verified: [result with actual commands tested]
+✅/❌ All directories/files mentioned exist: [result with file paths checked]
+
+setup-guide.md Validation:
+✅/❌ Prerequisites match actual requirements: [result with details]
+✅/❌ Installation commands correct: [result with package manager verified]
+✅/❌ Environment variables accurate: [result with .env.example checked]
+✅/❌ Development server command works: [result with script verification]
+
+examples/ Validation:
+✅/❌ Code examples reference actual code: [result with components verified]
+✅/❌ Import statements correct: [result with module paths checked]
+✅/❌ No fictional examples: [result - confirm all examples are real]
+
+Tech Leader Validation:
+✅/❌ Repository context accurate: [result with tech stack verification]
+✅/❌ File paths and structure correct: [result with directory validation]
+
+📊 SUMMARY CONSISTENCY CHECK:
+✅/❌ REPOSITORY ANALYSIS SUMMARY used exclusively: [confirm no external info used]
+✅/❌ DOCUMENTATION STRATEGY SUMMARY followed: [confirm file structure matches]
+✅/❌ Cross-references between summaries accurate: [validate consistency]
+
+📏 QUALITY GATES RESULTS:
+✅/❌ Total documentation ≤ 800 lines: [actual count: X lines]
+✅/❌ No more than 6 files created: [actual count: X files]
+✅/❌ No fictional content detected: [confirm all content is repository-based]
+
+❌ ISSUES IDENTIFIED:
+[List any issues found that need correction before completion]
+
+🎯 ONBOARDING EFFECTIVENESS ASSESSMENT:
+✅/❌ Setup can be completed in ≤ 30 minutes: [assessment based on complexity]
+✅/❌ First contribution path visible in ≤ 10 minutes: [assessment based on examples]
+✅/❌ Documentation total reading time ≤ 45 minutes: [estimated reading time]
+
+📋 GAPS ACKNOWLEDGED:
+[List any information gaps that were acknowledged rather than filled with assumptions]
+
+```
+
 **COMPLETION REPORT:**
-Upon successful validation (including file-by-file content verification):
+Upon successful validation (including file-by-file content verification and validation results summary):
 
 - "✅ **ONBOARDING DOCUMENTATION GENERATION COMPLETE**"
 - "📁 **Files Created**: [list all generated files with line counts]"
@@ -603,12 +799,4 @@ After generation, you can:
 ---
 
 _Universal Repository Onboarding Generator - Works with any codebase to create tailored developer documentation_
-
-```
-
-```
 ````
-
-```
-
-```
