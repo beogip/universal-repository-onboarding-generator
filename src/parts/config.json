@@ -1,0 +1,59 @@
+{
+  "name": "Universal Repository Onboarding Generator",
+  "version": "2.1.0",
+  "description": "Modular prompt builder configuration",
+  "header": {
+    "file": "00-header.md",
+    "variables": {
+      "VERSION": "2.1.0"
+    }
+  },
+  "wrapper": {
+    "start": "````markdown",
+    "end": "```"
+  },
+  "parts": [
+    {
+      "name": "Step 1: Establish Onboarding Objectives",
+      "file": "01-establish-objectives.md",
+      "description": "Sets up primary goals and success metrics"
+    },
+    {
+      "name": "Step 2: Complete Repository Analysis",
+      "file": "02-repository-analysis.md",
+      "description": "Evidence-based analysis with mandatory summary"
+    },
+    {
+      "name": "Step 3: Smart Documentation Generation Strategy",
+      "file": "03-documentation-strategy.md",
+      "description": "Planning and strategy with mandatory summary"
+    },
+    {
+      "name": "Step 4: Technology-Specific Content Creation",
+      "file": "04-content-creation.md",
+      "description": "Content creation using both summaries"
+    },
+    {
+      "name": "Step 5: GitHub Copilot Instructions Generation",
+      "file": "05-copilot-integration.md",
+      "description": "Tech Leader walkthrough generation"
+    },
+    {
+      "name": "Step 6: Final Validation & Quality Assurance",
+      "file": "06-validation-quality.md",
+      "description": "Comprehensive validation with results summary"
+    },
+    {
+      "name": "Execution Requirements",
+      "file": "07-execution-requirements.md",
+      "description": "Mandatory sequence and enforcement rules"
+    }
+  ],
+  "footer": {
+    "file": "99-footer.md",
+    "variables": {
+      "GENERATOR_NAME": "Universal Repository Onboarding Generator",
+      "VERSION": "2.1.0"
+    }
+  }
+}
