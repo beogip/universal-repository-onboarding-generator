@@ -1,50 +1,44 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Universal Repository Onboarding Generator Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. User-First Documentation
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+All features and outputs must prioritize clarity, accessibility, and value for new developers onboarding to a repository. Documentation must be actionable, concise, and tailored to the actual repository structure and stack.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Automation & Consistency
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+Onboarding documentation generation must be automated, reproducible, and consistent across repositories. Manual steps should be minimized. Templates and validation rules must be used to ensure quality and uniformity.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. Measurable Outcomes
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+All onboarding flows must target measurable objectives: first meaningful contribution in ≤4 hours, setup in ≤30 minutes, and total reading time ≤45 minutes. Success metrics must be tracked and validated.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. No Fictional Content
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+All generated documentation must be based on real repository analysis. No fictional code, examples, or references are allowed. All links, commands, and code snippets must exist and be verifiable.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### V. Minimal Intrusion
+
+The generator must not modify or create files outside the designated onboarding and configuration folders. Existing customizations must be preserved unless explicitly confirmed by the user.
+
+## Additional Constraints
+
+- Documentation must not exceed 1500 lines across all files.
+- The installation process must be idempotent and safe to repeat.
+- The system must support multiple stacks and repository types.
+- All outputs must be in Markdown and human-readable.
+- All templates and configuration must be versioned.
+
+## Development Workflow & Quality Gates
+
+- All changes must be reviewed for compliance with this constitution.
+- All new features must include testable, user-focused requirements.
+- Quality gates: documentation structure, time objectives, and template compliance must be validated before release.
+- Breaking changes require explicit migration instructions and version bump.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other practices for onboarding documentation generation in this project. Amendments require documentation, approval, and a migration plan. All PRs and reviews must verify compliance with these principles. Complexity must be justified. Use the latest specification and constitution as guidance for all development and review activities.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-09-18 | **Last Amended**: 2025-09-18
