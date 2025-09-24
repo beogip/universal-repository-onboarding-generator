@@ -1,41 +1,30 @@
-# Research: Universal Onboarding AI Prompts and Scripts
+# Research: Universal Onboarding AI Prompts and Scripts (CLI NPX)
 
 Date: 2025-09-23 | Branch: 002-la-generación-de
 
-## Topics & Decisions
+## Decisions
 
-### Editor AI Local-only vs Opt-in Connectors
+- Local-only by default (no network). Editor AI (Copilot/Cursor) executes prompts; CLI no hace llamadas externas.
+- AI writes docs to `docs/onboarding/`. CLI provides `analyze` + `prepare` (AnalysisOutput, prompts, paths) y `teach`.
+- Monorepo support: selección de workspaces durante `prepare` (usar `package.json` workspaces y/o heurísticas).
+- Fallback cuando análisis es inconcluso: solicitar 3 inputs (stack, PM, start) antes de preparar generación.
+- Template seeding: sets por tipo de repo; re-seeding seguro (no sobrescribir sin confirmación).
+- Build extension: `build/build.js` multi-output + `repository.*` variables; backward compatible.
 
-- Decision: Local-only baseline; connectors opt-in with allowlist and audit.
-- Rationale: Privacy by default; predictable, offline-friendly behavior.
-- Alternatives: Always-online with fetching docs (Rejected: privacy, reproducibility).
+## Rationale
 
-### Monorepo Selection UX
+- Privacidad y reproducibilidad: todo local; auditable; sin dependencia de proveedor.
+- Editor-centric: aprovechar contexto del editor/AI para redacción y refinamiento.
+- Escala: repos hasta 1k archivos, análisis <5s.
+- Mantenibilidad: plantillas versionadas en este repo; siembra determinística en repos objetivo.
 
-- Decision: Prompt user to select target packages during generation.
-- Rationale: Control scope; avoids generating noise; fits diverse monorepos.
-- Alternatives: Auto-detect primary app (Rejected: error-prone), generate-all (Rejected: bloat).
+## Alternatives Considered
 
-### Fallback UX for Inconclusive Analysis
+- CLI generando directamente los docs (descartado por enfoque editor-centric y privacidad contextual).
+- Servicios remotos para análisis (descartado por política local-only y simplicidad operativa).
+- Ignorar monorepos (descartado; común en ecos Node, pnpm, yarn).
 
-- Decision: Use generic templates and ask 3 inputs (stack, package manager, start command).
-- Rationale: Guarantees progress without guessing; fast user confirmation.
-- Alternatives: Abort generation (Rejected: blocks onboarding), best-guess (Rejected: misleading).
+## Open Notes
 
-### Template Seeding Strategy
-
-- Decision: Installer asks repo type and seeds corresponding templates.
-- Rationale: Faster first run; curated content.
-- Alternatives: No seeding (Rejected: empty state), skeleton-only (Rejected: more manual work).
-
-### Output Layout
-
-- Decision: Write to `docs/onboarding/` (commit-friendly).
-- Rationale: Discoverable, versioned; aligns with docs sites.
-- Alternatives: `.onboarding/output` (local only), `.github/prompts` (prompt artifacts only).
-
-## Open Questions (for future)
-
-- Performance targets for very large monorepos (>10k files).
-- Detailed connector APIs and authentication models.
-- Accessibility/localization guidelines for teach mode.
+- Conectores opt-in futuros: allowlist + audit; fuera de alcance inmediato.
+- UX exacta de selección monorepo: prompt CLI (+ flags) y persistencia opcional en `.onboarding/config.json`.

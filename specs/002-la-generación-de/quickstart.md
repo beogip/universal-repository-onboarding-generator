@@ -1,31 +1,47 @@
-# Quickstart: Universal Onboarding AI Prompts and Scripts
+# Quickstart (CLI NPX): Universal Onboarding
 
-1. Install and initialize
+## Requisitos
 
-- Install the package (local dev): ensure Node.js 18+
-- Initialize `.onboarding/` structure
+- Node.js 18+
+- Editor con AI (Copilot/Cursor)
 
-2. Seed templates
+## Pasos
 
-- Run installer step: select repo type; seeds templates in `.onboarding/template/`
+1. Instalar y sembrar en el repo objetivo
 
-3. Analyze repository
+```
+npx repository-onboarding-generator init
+```
 
-- Run `.onboarding/scripts/analyze-repo.js`
-- Verify `.onboarding/analysis.json`
+2. Analizar el repositorio
 
-4. Generate onboarding
+```
+npx repository-onboarding-generator analyze
+```
 
-- Open `.onboarding/prompts/generate-onboarding.md` with your editor AI
-- Provide analysis outputs; confirm monorepo package selection if prompted
-- Validate docs created under `docs/onboarding/`
+3. Preparar prompts y validaciones para generación
 
-5. Teach mode
+```
+npx repository-onboarding-generator prepare
+```
 
-- Open `.onboarding/prompts/teach.md` with your editor AI
-- Follow the didactic steps; confirm logs in `.onboarding/logs`
+4. Generar documentación (en el editor)
 
-6. Review and commit
+- Abre `.onboarding/prompts/generate-onboarding.md` en el editor y ejecuta el prompt.
+- La AI escribirá archivos en `docs/onboarding/`.
 
-- Review generated docs
-- Commit `docs/onboarding/`
+5. Sesión didáctica (teach)
+
+- Abre `.onboarding/prompts/teach.md` y sigue la guía; se registrará en `.onboarding/logs`.
+
+## Monorepos
+
+- Durante `prepare`, selecciona workspaces objetivo.
+
+## Fallback
+
+- Si análisis es inconcluso, `prepare` te pedirá: stack, package manager, start command.
+
+## Validación
+
+- Usa `prepare` para verificar placeholders y coherencia antes de generar.

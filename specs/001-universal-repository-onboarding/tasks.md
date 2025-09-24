@@ -41,32 +41,32 @@
 
 ## Phase 3.1: Setup & NPX Package Structure
 
-- [ ] T001 Create NPX package structure with bin entry for `repository-onboarding-generator`
-- [ ] T002 Initialize Node.js project with Commander.js, Mustache.js dependencies (preserve existing chokidar)
-- [ ] T003 [P] Configure Jest testing framework with integration test setup
-- [ ] T004 [P] Configure ESLint/Prettier for CLI code (separate from build.js linting)
+- [x] T001 Create NPX package structure with bin entry for `repository-onboarding-generator`
+- [x] T002 Initialize Node.js project with Commander.js, Mustache.js dependencies (preserve existing chokidar)
+- [x] T003 [P] Configure Jest testing framework with integration test setup
+- [x] T004 [P] Configure ESLint/Prettier for CLI code (separate from build.js linting)
 
 ## Phase 3.2: Tests First (TDD) ⚠️ MUST COMPLETE BEFORE 3.3
 
 **CRITICAL: These tests MUST be written and MUST FAIL before ANY implementation**
 
-- [ ] T005 [P] Contract test CLI `install` command in `tests/contract/test_cli_install.js`
-- [ ] T006 [P] Contract test CLI `regenerate` command in `tests/contract/test_cli_regenerate.js`
-- [ ] T007 [P] Contract test CLI `customize` command in `tests/contract/test_cli_customize.js`
-- [ ] T008 [P] Contract test build.js multi-output extension in `tests/contract/test_build_extension.js`
-- [ ] T009 [P] Integration test repository analysis workflow in `tests/integration/test_repository_analysis.js`
-- [ ] T010 [P] Integration test build.js prompt generation in `tests/integration/test_prompt_generation.js`
-- [ ] T011 [P] Integration test NPX installation workflow in `tests/integration/test_npx_workflow.js`
-- [ ] T012 [P] Integration test template customization in `tests/integration/test_template_customization.js`
+- [x] T005 [P] Contract test CLI `install` command in `tests/contract/test_cli_install.js`
+- [x] T006 [P] Contract test CLI `regenerate` command in `tests/contract/test_cli_regenerate.js`
+- [x] T007 [P] Contract test CLI `customize` command in `tests/contract/test_cli_customize.js`
+- [x] T008 [P] Contract test build.js multi-output extension in `tests/contract/test_build_extension.js`
+- [x] T009 [P] Integration test repository analysis workflow in `tests/integration/test_repository_analysis.js`
+- [x] T010 [P] Integration test build.js prompt generation in `tests/integration/test_prompt_generation.js`
+- [x] T011 [P] Integration test NPX installation workflow in `tests/integration/test_npx_workflow.js`
+- [x] T012 [P] Integration test template customization in `tests/integration/test_template_customization.js`
 
 ## Phase 3.3: Core Implementation (ONLY after tests are failing)
 
 ### Repository Analysis Engine
 
-- [ ] T013 [P] Repository entity model in `src/analysis/repository.js`
-- [ ] T014 [P] RepositoryType detection logic in `src/analysis/repository-detector.js`
-- [ ] T015 [P] BuildConfiguration generator in `src/analysis/build-config-generator.js`
-- [ ] T016 Repository analysis orchestrator in `src/analysis/analyzer.js` (coordinates T013-T015)
+- [x] T013 [P] Repository entity model in `src/analysis/repository.js`
+- [x] T014 [P] RepositoryType detection logic in `src/analysis/repository-detector.js`
+- [x] T015 [P] BuildConfiguration generator in `src/analysis/build-config-generator.js`
+- [x] T016 Repository analysis orchestrator in `src/analysis/analyzer.js` (coordinates T013-T015)
 
 ### Build System Extension (Sequential - shared build.js system)
 
@@ -109,6 +109,16 @@
 - [ ] T041 [P] Update README.md with installation and usage instructions
 - [ ] T042 [P] Create NPM package documentation in `docs/npm-package.md`
 - [ ] T043 Remove any temporary/debug code and optimize imports
+
+### Constitutional & Clarification Validations
+
+- [ ] T044 [P] Validate no-fictional-content in `tests/integration/test_no_fictional_content.js`
+- [ ] T045 [P] Validate docs total lines ≤1500 in `tests/integration/test_doc_line_limit.js`
+- [ ] T046 Test idempotent install in `tests/integration/test_install_idempotency.js`
+- [ ] T047 Test rollback on failure in `tests/integration/test_install_rollback.js`
+- [ ] T048 [P] Test permission fail-fast in `tests/integration/test_permission_fail_fast.js`
+- [ ] T049 [P] Validate Copilot prompts usability in `tests/integration/test_copilot_prompt_format.js`
+- [ ] T050 Backward-compat acceptance (old config) in `tests/integration/test_backward_compatibility_old_config.js`
 
 ## Dependencies
 

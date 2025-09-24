@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Node.js 18+ installed
+- Node.js >= 18 installed
 - NPM or NPX available
 - Repository with write permissions
 - Git repository (initialized)
@@ -193,6 +193,20 @@ ls -lt .github/prompts/
 ```
 
 **Success Criteria**: Memory usage <150MB for multi-output generation
+
+## Expected Outcomes (Measurable)
+
+- Setup ≤ 30 minutes
+- Architecture understanding ≤ 20 minutes
+- Contribution identification ≤ 10 minutes
+- Repository analysis ≤ 5 seconds p95; memory ≤ 100MB
+
+## Clarified Behaviors
+
+- Unsupported/mixed stacks: generate generic templates; annotate unknowns; skip stack-specific sections
+- Existing docs: update in place with backups
+- Interrupted install: rollback to pre-install state; output error report
+- Restricted permissions: fail fast with actionable guidance
 
 ## Real-World Repository Tests
 

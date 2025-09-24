@@ -228,3 +228,11 @@
 3. **Prompt Generation**: Extended build.js execution → Multiple output files → .github/prompts/ creation
 4. **Template Installation**: Local .repository-onboarding/ setup → Customization support → Future regeneration capability
 5. **Watch Integration**: Leverage existing chokidar system for automatic prompt regeneration
+
+## Constraints (from Clarifications)
+
+- Unsupported/mixed stacks → generic templates, annotate unknowns (FR-011)
+- Existing docs → augment in place with backups (FR-012)
+- Interrupted install → rollback + error report (FR-013)
+- Permission errors → fail-fast with guidance (FR-014)
+- Analysis ≤5s p95; memory ≤100MB (NFR-001)

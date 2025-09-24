@@ -2,19 +2,19 @@
 
 ## Inputs
 
-- AnalysisOutput JSON (optional)
+- AnalysisOutput JSON (opcional)
 - Repo context (READONLY)
 
 ## Process
 
-- Guide user through environment setup, architecture overview, test execution
-- Log steps and results to `.onboarding/logs` as JSON or NDJSON
+- Guía de setup, arquitectura y tests
+- Logging de pasos a `.onboarding/logs` (JSON o NDJSON)
 
 ## Outputs
 
-- Log files under `.onboarding/logs`
+- Archivos de log en `.onboarding/logs`
 
 ## Validation
 
-- Log entries contain timestamps, step names, status, and optional notes
-- No network calls by default (local-only)
+- Cada entrada: timestamp, step name, status, optional notes
+- Sin llamadas de red por defecto (local-only)

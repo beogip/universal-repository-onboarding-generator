@@ -69,3 +69,22 @@
 **Decision**: Reuse build.js caching and optimization patterns for prompt generation
 **Rationale**: Existing system already optimized for file watching, template processing, and build performance
 **Implementation**: Extend existing statistics and timing to include prompt generation metrics
+
+## Clarification Outcomes (2025-09-23)
+
+### Decisions
+
+- Unsupported/mixed stacks: generate generic onboarding; annotate unknowns; skip stack-specific sections (FR-011)
+- Existing docs: update in place with backups (FR-012)
+- Interrupted install: rollback to pre-install; output error report (FR-013)
+- Permissions: fail fast with actionable guidance (FR-014)
+- Performance: analysis ≤5s p95; memory ≤100MB (NFR-001)
+
+### Rationale
+
+- Ensures measurable UX and reliability while preserving user customizations and safety.
+
+### Alternatives Considered
+
+- Interactive NPX prompts → rejected; prefer automation and CI friendliness.
+- Partial generation on permission errors → rejected due to complexity and confusion.

@@ -1,6 +1,6 @@
 # Implementation Plan: Universal Repository Onboarding Generator v3.0.0
 
-**Branch**: `001-universal-repository-onboarding` | **Date**: 2025-09-18 | **Spec**: [./spec.md](./spec.md)
+**Branch**: `001-universal-repository-onboarding` | **Date**: 2025-09-23 | **Spec**: `/Users/beogip/Github/universal-repository-onboarding-generator/specs/001-universal-repository-onboarding/spec.md`
 **Input**: Feature specification from `/specs/001-universal-repository-onboarding/spec.md`
 
 ## Execution Flow (/plan command scope)
@@ -18,7 +18,7 @@
    → Update Progress Tracking: Initial Constitution Check
 5. Execute Phase 0 → research.md
    → If NEEDS CLARIFICATION remain: ERROR "Resolve unknowns"
-6. Execute Phase 1 → contracts, data-model.md, quickstart.md, agent-specific template file (e.g., `CLAUDE.md` for Claude Code, `.github/copilot-instructions.md` for GitHub Copilot, `GEMINI.md` for Gemini CLI, or `QWEN.md` for Qwen Code).
+6. Execute Phase 1 → contracts, data-model.md, quickstart.md, agent-specific template file (e.g., `CLAUDE.md` for Claude Code, `.github/copilot-instructions.md` for GitHub Copilot, `GEMINI.md` for Gemini CLI, `QWEN.md` for Qwen Code or `AGENTS.md` for opencode).
 7. Re-evaluate Constitution Check section
    → If new violations: Refactor design, return to Phase 1
    → Update Progress Tracking: Post-Design Constitution Check
@@ -33,29 +33,40 @@
 
 ## Summary
 
-NPX-installable command that analyzes repository structure and generates comprehensive onboarding documentation using customizable templates. Technical approach: Extend existing build.js system from src/parts/ to generate complex prompts in .github/prompts/, enabling VS Code Copilot integration with template-based repository analysis and documentation generation.
+- Goal: NPX-installable CLI that analyzes repositories and generates onboarding
+  docs tailored to detected stacks using customizable templates; extends build
+  system for multi-output while preserving backward compatibility.
+- Key FRs: detection (FR-002), generation from templates (FR-003), measurable
+  outcomes (FR-004, FR-007), idempotent install (FR-008), no fictional content
+  (FR-006), VS Code Copilot integration (FR-010), unsupported/mixed stacks
+  fallback (FR-011), existing docs augmentation with backups (FR-012), rollback
+  on failed installs (FR-013), permission fail-fast (FR-014).
+- NFRs: Analysis performance ≤5s p95 and ≤100MB memory (NFR-001).
 
 ## Technical Context
 
-**Language/Version**: Node.js 18+ (NPM package with existing build.js infrastructure)  
-**Primary Dependencies**: Commander.js (CLI), fs/path (file operations), mustache (templating), chokidar (existing watch system)  
-**Storage**: Local filesystem (.repository-onboarding/ for templates, .github/prompts/ for generated prompts via build.js)  
-**Testing**: Jest (unit tests), integration tests for NPX installation workflow  
-**Target Platform**: Cross-platform CLI (macOS, Linux, Windows) with existing build system
-**Project Type**: single (CLI tool with modular prompt system using existing src/parts/ architecture)  
-**Performance Goals**: <5 seconds analysis time, <1MB template storage, leverage existing build optimization  
-**Constraints**: Must work offline, idempotent operations, extend existing build.js without breaking compatibility  
-**Scale/Scope**: Support 10+ repository types, 20+ template variations, reuse existing src/parts/ modular system
+**Language/Version**: Node.js (>=18)  
+**Primary Dependencies**: commander, mustache, chokidar, jest  
+**Storage**: Filesystem (repository); no external DB  
+**Testing**: Jest  
+**Target Platform**: macOS/Linux/Windows (Node CLI)  
+**Project Type**: Single project (CLI + build system)  
+**Performance Goals**: Repository analysis ≤5s p95 (NFR-001)  
+**Constraints**: Memory ≤100MB (NFR-001); docs ≤1500 lines; idempotent install; no fictional content  
+**Scale/Scope**: Medium repos (~5k files) baseline
 
 ## Constitution Check
 
 _GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
-**User-First Documentation**: ✅ PASS - Templates prioritize contributor experience, 4-hour first contribution goal aligned with requirements
-**Automation & Consistency**: ✅ PASS - NPX installation + build.js system provides automated, consistent setup across projects  
-**Measurable Outcomes**: ✅ PASS - Success criteria: <5s analysis, 4-hour first contribution, setup ≤30min, understanding ≤20min
-**No Fictional Content**: ✅ PASS - All templates based on actual repository analysis via build.js modular system
-**Minimal Intrusion**: ✅ PASS - Only creates .repository-onboarding/ and .github/prompts/, leverages existing architecture
+- User-First Documentation: Actionable onboarding with measurable timings.
+- Automation & Consistency: Template-driven; extends build system without breaking.
+- Measurable Outcomes: ≤30m setup, ≤20m architecture, ≤10m contribution discovery.
+- No Fictional Content: Analysis-backed outputs; validate references exist.
+- Minimal Intrusion: Writes only to onboarding/config folders; preserves customizations.
+- Constraints: Docs ≤1500 lines; idempotent install; versioned templates/config.
+
+Gate decision: PASS (Initial Constitution Check)
 
 ## Project Structure
 
@@ -109,12 +120,11 @@ ios/ or android/
 └── [platform-specific structure]
 ```
 
-**Structure Decision**: [DEFAULT to Option 1 unless Technical Context indicates web/mobile app]
+**Structure Decision**: Option 1 (Single project). No frontend/mobile split required.
 
 ## Phase 0: Outline & Research
 
 1. **Extract unknowns from Technical Context** above:
-
    - For each NEEDS CLARIFICATION → research task
    - For each dependency → best practices task
    - For each integration → patterns task
@@ -140,30 +150,27 @@ ios/ or android/
 _Prerequisites: research.md complete_
 
 1. **Extract entities from feature spec** → `data-model.md`:
-
    - Entity name, fields, relationships
    - Validation rules from requirements
    - State transitions if applicable
 
 2. **Generate API contracts** from functional requirements:
-
    - For each user action → endpoint
    - Use standard REST/GraphQL patterns
    - Output OpenAPI/GraphQL schema to `/contracts/`
 
 3. **Generate contract tests** from contracts:
-
    - One test file per endpoint
    - Assert request/response schemas
    - Tests must fail (no implementation yet)
 
 4. **Extract test scenarios** from user stories:
-
    - Each story → integration test scenario
    - Quickstart test = story validation steps
 
 5. **Update agent file incrementally** (O(1) operation):
-   - Run `.specify/scripts/bash/update-agent-context.sh copilot` for your AI assistant
+   - Run `.specify/scripts/bash/update-agent-context.sh copilot`
+     **IMPORTANT**: Execute it exactly as specified above. Do not add or remove any arguments.
    - If exists: Add only NEW tech from current plan
    - Preserve manual additions between markers
    - Update recent changes (keep last 3)
@@ -179,23 +186,19 @@ _This section describes what the /tasks command will do - DO NOT execute during 
 **Task Generation Strategy**:
 
 - Load `.specify/templates/tasks-template.md` as base
-- Generate tasks focused on build.js integration and NPX packaging
-- **Build System Tasks**: Extend PromptBuilder class, add multi-output support, preserve backward compatibility
-- **Repository Analysis Tasks**: Create analysis engine that generates build.js variables
-- **CLI Integration Tasks**: NPX package structure, command interface, build system integration
-- **Template System Tasks**: New src/parts/ files for repository-specific content
+- Generate tasks from Phase 1 design docs (contracts, data model, quickstart)
+- Each contract → contract test task [P]
+- Each entity → model creation task [P]
+- Each user story → integration test task
+- Implementation tasks to make tests pass
 
-**Ordering Strategy (Build.js Integration Focus)**:
+**Ordering Strategy**:
 
-1. **Foundation**: Repository analysis engine [P] + Build system contract tests [P]
-2. **Core Extension**: Extend PromptBuilder class for multi-output support
-3. **Integration Layer**: CLI commands that configure and execute extended build.js
-4. **Template Content**: New src/parts/ files for different repository types [P]
-5. **Testing**: Integration tests for full NPX → build.js → prompt generation workflow
+- TDD order: Tests before implementation
+- Dependency order: Models before services before UI
+- Mark [P] for parallel execution (independent files)
 
-**Estimated Output**: 20-25 numbered tasks focusing on extending existing architecture rather than building from scratch
-
-**Build.js Integration Priority**: All tasks must preserve existing functionality while adding new capabilities
+**Estimated Output**: 25-30 numbered, ordered tasks in tasks.md
 
 **IMPORTANT**: This phase is executed by the /tasks command, NOT by /plan
 
@@ -222,9 +225,9 @@ _This checklist is updated during execution flow_
 
 **Phase Status**:
 
-- [x] Phase 0: Research complete (/plan command)
-- [x] Phase 1: Design complete (/plan command)
-- [x] Phase 2: Task planning complete (/plan command - describe approach only)
+- [ ] Phase 0: Research complete (/plan command)
+- [ ] Phase 1: Design complete (/plan command)
+- [ ] Phase 2: Task planning complete (/plan command - describe approach only)
 - [ ] Phase 3: Tasks generated (/tasks command)
 - [ ] Phase 4: Implementation complete
 - [ ] Phase 5: Validation passed
@@ -232,10 +235,10 @@ _This checklist is updated during execution flow_
 **Gate Status**:
 
 - [x] Initial Constitution Check: PASS
-- [x] Post-Design Constitution Check: PASS
-- [x] All NEEDS CLARIFICATION resolved
+- [ ] Post-Design Constitution Check: PASS
+- [ ] All NEEDS CLARIFICATION resolved
 - [ ] Complexity deviations documented
 
 ---
 
-_Based on Constitution v2.1.1 - See `/memory/constitution.md`_
+_Constitution reference: `.specify/memory/constitution.md`_

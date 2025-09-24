@@ -1,99 +1,132 @@
-# Tasks: Universal Onboarding AI Prompts and Scripts
+# Tasks: Universal Onboarding AI Prompts and Scripts (CLI NPX)
 
-Feature: `002-la-generación-de`
-Spec: `specs/002-la-generación-de/spec.md`
-Plan: `specs/002-la-generación-de/plan.md`
+**Input**: Design documents from `/specs/002-la-generación-de/`
+**Prerequisites**: plan.md (required), research.md, data-model.md, contracts/
 
-Notes:
+## Execution Flow (main)
 
-- [P] indicates tasks that can run in parallel (different files/directories)
-- TDD order: tests before implementation
+```
+1. Load plan.md from feature directory
+   → Extract: tech stack, libraries, structure
+2. Load optional design documents:
+   → data-model.md: Extract entities → model tasks
+   → contracts/: Each file → contract test task
+   → research.md: Extract decisions → setup tasks
+   → quickstart.md: Extract flows → integration tests
+3. Generate tasks by category:
+   → Setup: CLI skeleton (`src/cli/`, `bin/`), templates fuente (`src/templates/`), fixtures de prueba
+   → Tests: contract tests, integration tests (fixtures como repos objetivo)
+   → Core: comandos CLI (`init|analyze|prepare|teach`), extensión de `build/build.js`
+   → Integration: bin, package.json, validaciones preflight, documentación
+   → Polish: unit tests, performance, idempotencia, QA manual
+4. Apply task rules:
+   → Different files = mark [P] for parallel
+   → Same file = sequential (no [P])
+   → Tests before implementation (TDD)
+5. Number tasks sequentially (T001, T002...)
+6. Generate dependency graph
+7. Create parallel execution examples
+8. Validate task completeness
+```
 
-## Setup
+## Format: `[ID] [P?] Description`
 
-- T001: Initialize `.onboarding/` structure [P]
-  - Create folders: `.onboarding/scripts`, `.onboarding/template`, `.onboarding/prompts`, `.onboarding/logs`
-  - Acceptance: folders exist and are tracked
+- **[P]**: Can run in parallel (different files, no dependencies)
+- Include exact file paths in descriptions
 
-- T002: Seed base templates by repo type [P]
-  - Add `.onboarding/template/README.md.tpl`, `QUICKSTART.md.tpl`, `CONTRIBUTING.md.tpl`
-  - Acceptance: files created with placeholders and headers
+## Path Conventions
 
-- T003: Add prompts skeletons [P]
-  - Create `.onboarding/prompts/generate-onboarding.md` and `teach.md` with section markers
-  - Acceptance: prompts exist and render placeholders
+- Single project; repository root
+- Source: `src/cli/`, `src/templates/`, `src/analysis/`, `build/build.js`
+- Tests: `tests/contract/`, `tests/integration/`, `tests/unit/`, `tests/performance/`, `tests/fixtures/`
 
-## Contract Tests (Phase 1 → tests first)
+## Phase 3.1: Setup
 
-- T004 [P]: Contract test for analysis output schema
-  - Path: `tests/contract/analysis-output.schema.test.js`
-  - Assert schema fields: `stack`, `packageManager`, `scripts`, `workspaces?`, `confidence`
+- [ ] T001 Scaffold CLI: crear `src/cli/` (index y comandos), `bin/repository-onboarding-generator` (shebang, reexport CLI)
+- [ ] T002 Crear `src/templates/` con semillas: `README.md.tpl`, `QUICKSTART.md.tpl`, `CONTRIBUTING.md.tpl` (fuente para siembra en repos objetivo)
+- [ ] T003 [P] Preparar fixtures de prueba: `tests/fixtures/basic-repo/` y `tests/fixtures/monorepo/` (package.json mínimos, workspaces en monorepo)
+- [ ] T004 [P] Verificar/crear carpetas de test: `tests/contract/`, `tests/integration/`, `tests/unit/`, `tests/performance/`
 
-- T005 [P]: Contract test for generate-onboarding flow
-  - Path: `tests/contract/generate-onboarding.contract.test.js`
-  - Inputs: analysis JSON + templates; Outputs: files in `docs/onboarding/`
+## Phase 3.2: Tests First (TDD) ⚠️ MUST COMPLETE BEFORE 3.3
 
-- T006 [P]: Contract test for teach-mode logging
-  - Path: `tests/contract/teach-mode.contract.test.js`
-  - Assert logs in `.onboarding/logs` with timestamps and steps
+CRITICAL: Estos tests deben escribirse y FALLAR antes de implementar
 
-## Core Implementation
+Contract tests (contratos → tests)
 
-- T007: Implement analysis script
-  - Path: `.onboarding/scripts/analyze-repo.js`
-  - Detect stack, package manager, scripts, workspaces (monorepo), confidence
-  - Output JSON to stdout and `.onboarding/analysis.json`
+- [ ] T005 [P] Contract test: AnalysisOutput cumple `contracts/analysis-output.schema.json` en `tests/contract/analysis-output.contract.test.js`
+- [ ] T006 [P] Contract test: "Generate" (modo AI) — `prepare` valida templates, resuelve placeholders y compone prompts con path `docs/onboarding/` en `tests/contract/generate-onboarding.contract.test.js`
+- [ ] T007 [P] Contract test: Teach mode loggea a `.onboarding/logs` con campos requeridos en `tests/contract/teach-mode.contract.test.js`
+- [ ] T008 [P] Contract test: Extensión de build soporta multi-output y variables `repository.*` (compatibilidad retenida) en `tests/contract/build-extension.v3.contract.test.js`
 
-- T008: Implement template validator
-  - Path: `.onboarding/scripts/validate-templates.js`
-  - Verify required templates exist and placeholders are resolvable
+Integration tests (historias de usuario → tests con fixtures)
 
-- T009: Implement prompt assembly for /generate-onboarding
-  - Update `.onboarding/prompts/generate-onboarding.md` to:
-    - Read analysis output
-    - Select templates per package selection (monorepo)
-    - Emit instructions to write to `docs/onboarding/`
+- [ ] T009 [P] CLI `init` siembra `.onboarding/` en fixture basic en `tests/integration/cli-init-seed.test.js`
+- [ ] T010 [P] CLI `analyze` produce AnalysisOutput JSON (archivo y/o stdout) en `tests/integration/cli-analyze.test.js`
+- [ ] T011 [P] CLI `prepare` compone `generate-onboarding.md` y `teach.md` y valida templates en `tests/integration/cli-prepare.test.js`
+- [ ] T012 [P] Ensamblado modular de prompts refleja cambios de secciones en `tests/integration/prompt-assembly.test.js`
+- [ ] T013 [P] Ubicación de salida: `prepare` instruye AI para escribir en `docs/onboarding/` en `tests/integration/output-guidance.test.js`
+- [ ] T014 [P] Monorepo: selección de workspaces en `tests/integration/monorepo-selection.test.js`
+- [ ] T015 [P] Fallback: 3 inputs (stack, PM, start) en `tests/integration/fallback-flow.test.js`
+- [ ] T016 [P] Seeding por tipo de repo durante `init` en `tests/integration/template-seeding.test.js`
 
-- T010: Implement /teach prompt logic
-  - Update `.onboarding/prompts/teach.md` to run didactic steps and log to `.onboarding/logs`
+## Phase 3.3: Core Implementation (ONLY after tests are failing)
 
-## Monorepo & Fallback
+- [ ] T017 Implementar comandos en `src/cli/commands/init.js` (siembra `.onboarding/` en repo objetivo desde `src/templates/`)
+- [ ] T018 [P] Implementar `src/cli/commands/analyze.js` (<=5s) usando `src/analysis/` y emitiendo AnalysisOutput válido
+- [ ] T019 [P] Implementar `src/cli/commands/prepare.js` (valida templates, compone prompts/sections, calcula `repository.*`)
+- [ ] T020 [P] Implementar `src/cli/commands/teach.js` (guía y logging en `.onboarding/logs`)
+- [ ] T021 Extender `build/build.js` (PromptBuilder): multi-output + variables `repository.*` (compatibilidad preservada)
+- [ ] T022 Cablear `bin/repository-onboarding-generator` y parser de CLI (sin dependencias pesadas)
+- [ ] T023 [P] Implementar seeding por tipo de repo en `src/templates/` (sets por stack)
+- [ ] T024 [P] Manejar selección de workspaces (monorepo) en `prepare`
+- [ ] T025 [P] Manejar fallback de 3 inputs en `prepare`
 
-- T011: Add monorepo package selection flow
-  - If workspaces exist, prompt user to select target packages
-  - Ensure per-package generation in `docs/onboarding/{pkg}/`
+## Phase 3.4: Integration
 
-- T012: Add fallback when analysis inconclusive
-  - Use generic templates and request 3 inputs (stack, PM, start cmd)
+- [ ] T026 Publicación/ejecución: definir `bin` en `package.json` y scripts dev (`cli:dev`)
+- [ ] T027 [P] Preflight: `prepare` incluye validaciones de templates/placeholders
+- [ ] T028 [P] Actualizar `README.md` y `specs/002-la-generación-de/quickstart.md` con comandos `npx`
+- [ ] T029 [P] Actualizar `.github/copilot-instructions.md` con nuevas capacidades del CLI
 
-## Output & Docs
+## Phase 3.5: Polish
 
-- T013: Write generated docs to `docs/onboarding/`
-  - Ensure index and per-package structure
+## Phase 3.5: Polish
 
-- T014: Quickstart guide generation
-  - Generate `docs/onboarding/QUICKSTART.md` from template
+- [ ] T030 [P] Unit tests utilidades de templates/resolución en `tests/unit/template-resolver.test.js`
+- [ ] T031 Performance test `analyze` (<5s) en `tests/performance/analyze-perf.test.js`
+- [ ] T032 [P] Idempotencia: re-ejecuciones no sobrescriben sin confirmación; manejo de diffs
+- [ ] T033 Manual QA: correr quickstart end-to-end y validar checklists
 
-## Privacy & Connectors
+## Phase 3.6: Privacy & Connectors
 
-- T015: Enforce local-only mode by default
-  - Block network in prompts/scripts; document behavior
+- [ ] T034 Implementar privacy guard (local-only): asegurar que el CLI no realiza llamadas de red por defecto; flag/entorno para habilitar conectores (opt-in)
+- [ ] T035 Implementar interfaz de conectores (stub) con allowlist y hooks de auditoría (deshabilitado por defecto)
+- [ ] T036 [P] Unit tests: privacy guard y conectores deshabilitados por defecto en `tests/unit/privacy-connectors.test.js`
+- [ ] T037 [P] Unit tests: auditoría de conectores (cuando habilitados) en `tests/unit/connectors-audit.test.js`
+- [ ] T038 [P] Logging: registrar resumen de `analyze` y `prepare` (timestamp, entradas, salidas) en `.onboarding/logs` en `tests/unit/analysis-prepare-logging.test.js`
 
-- T016: Connector interface (opt-in)
-  - Define allowlist file `.onboarding/connectors.json` and audit hooks
+## Dependencies
 
-## Polish [P]
+- Setup (T001–T004) antes de tests e implementación
+- Tests (T005–T016) antes de implementación (T017–T025)
+- T018 bloquea verificación de AnalysisOutput en integraciones
+- T021 habilita ensamblado multi-output y variables para T012
+- Implementación antes de integración (T026–T029) y polish (T030–T033)
+- Privacy & Connectors (T034–T038) después de Core e Integration; tests unitarios independientes [P]
 
-- T017 [P]: Jest integration tests for flows
-- T018 [P]: Markdown lint and structure validation
-- T019 [P]: Pre-commit hooks for `.onboarding/` and `docs/onboarding/`
-- T020 [P]: Update repository README with onboarding instructions
+## Parallel Example
 
-## Dependency Notes
+```
+# Lanzar en paralelo (carpetas distintas, sin dependencias cruzadas):
+T005–T008   # Contract tests
+T009–T016   # Integration tests por fixture
+```
 
-- Setup (T001–T003) precede tests and implementation
-- Tests (T004–T006) precede core (T007–T010)
-- Monorepo/fallback (T011–T012) after core basics
-- Output/docs (T013–T014) after generation flow
-- Privacy/connectors (T015–T016) after core; can be parallel if isolated
-- Polish (T017–T020) last
+## Validation Checklist
+
+- [ ] Todos los contratos tienen tests (T005–T008)
+- [ ] Todas las historias tienen tests de integración (T009–T016)
+- [ ] Tests primero y fallando antes de implementar
+- [ ] Tareas [P] independientes (archivos distintos)
+- [ ] Cada tarea indica ruta exacta
+- [ ] Sin colisiones de edición en tareas paralelas

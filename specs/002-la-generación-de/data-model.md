@@ -1,4 +1,4 @@
-# Data Model: Universal Onboarding AI Prompts and Scripts
+# Data Model: Universal Onboarding AI Prompts and Scripts (CLI NPX)
 
 Date: 2025-09-23 | Branch: 002-la-generación-de
 
@@ -16,7 +16,7 @@ Date: 2025-09-23 | Branch: 002-la-generación-de
 ### Template
 
 - id: string
-- path: string (relative to `.onboarding/template/`)
+- path: string (relative to seed root `src/templates/`)
 - placeholders: string[]
 - relationships:
   - usedBy: PromptSection[]
@@ -43,3 +43,22 @@ Date: 2025-09-23 | Branch: 002-la-generación-de
 - result: "success" | "partial" | "failed"
 - version: string (prompts/templates version)
 - user?: string
+
+### CLICommand
+
+- name: "init"|"analyze"|"prepare"|"teach"
+- args: Record<string, string|number|boolean>
+- io: { cwd: string; targetRepoPath: string }
+
+### TemplateSeed
+
+- name: string
+- files: { src: string; dest: string }[]
+- repoType: string (e.g., node, python, java, go)
+
+### TargetRepository
+
+- path: string
+- workspaces?: string[]
+- docsPath: string (default `docs/onboarding/`)
+- onboardingPath: string (default `.onboarding/`)

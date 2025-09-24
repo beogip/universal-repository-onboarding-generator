@@ -61,11 +61,10 @@ src/
 ```
 
 ## Recent Changes
+- 002-la-generación-de: Added [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
+- 002-la-generación-de: Added Node.js 18+ (CLI/scripts) + None mandated; editor AI (Copilot/Cursor) in user environmen
 
 - Completed v3.0.0 specification with functional requirements FR-001 through FR-010
-- Established constitutional framework (5 core principles)
-- Created implementation plan with research and design documentation
-- Defined data models and API contracts for CLI and template systems
 
 ## Development Guidelines
 

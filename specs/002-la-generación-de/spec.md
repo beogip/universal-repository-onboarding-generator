@@ -5,6 +5,8 @@
 **Status**: Draft  
 **Input**: User description: "La generación de la documentación debe ser hecha por una AI (Copilot/Cursor). Al instalarse, crear .onboarding y dos prompts /generate-onboarding y /teach. Scripts en .onboarding para operaciones (análisis de tecnologías del repo, etc.) usando ejemplos de .specify/scripts. /generate-onboarding: prompt que hace que la AI genere documentación usando outputs de script Node de análisis y templates en .onboarding/template. /teach: prompt en modo didacta para onboarding rápido. Fácil edición de prompts complejos con sistema de armado de prompts, dividido en secciones y build/deploy del package."
 
+Scope & Context: Este repositorio implementa un CLI instalable (NPX), similar a "speckit", que se ejecuta dentro de repositorios objetivo para sembrar `.onboarding/` (scripts, prompts, templates, logs) y generar documentación en `docs/onboarding/`. Aquí mantenemos las plantillas y lógica (p. ej., `src/templates/`, `src/analysis/`, `build/build.js`); el CLI no escribe `.onboarding/` en este propio repositorio salvo en fixtures de prueba.
+
 ## Execution Flow (main)
 
 ```
@@ -37,6 +39,7 @@
 - Q: ¿Cómo manejamos privacidad y exposición de datos a la AI? → A: A (Local-only: sin llamadas externas). Nota: futuro opt‑in para APIs propias y logging de clases.
 - Q: ¿Debe el instalador sembrar templates base en `.onboarding/template/`? → A: B (Preguntar tipo de repo y sembrar set correspondiente)
 - Q: ¿Dónde escribir la documentación generada? → A: B (`docs/onboarding/` en el repo, comiteable)
+- Q: ¿Quién genera los archivos en `docs/onboarding/` durante "generate"? → A: B (La AI en el editor; el CLI prepara AnalysisOutput + prompts y copia templates)
 
 ## User Scenarios & Testing (mandatory)
 
@@ -46,15 +49,15 @@ Como mantenedor de un repositorio, quiero instalar Universal Onboarding para que
 
 ### Acceptance Scenarios
 
-1. Given un repositorio existente, When instalo el paquete Universal Onboarding, Then se crea la carpeta `.onboarding` con prompts `/generate-onboarding` y `/teach`, y scripts base de análisis listos para ejecutar.
-2. Given ejecuto `/generate-onboarding`, When la AI procesa los outputs del script Node de análisis y consulta templates en `.onboarding/template`, Then se genera documentación de onboarding lista para revisión.
-3. Given un usuario nuevo, When ejecuta `/teach`, Then la AI lo guía paso a paso para preparar el entorno, entender la arquitectura, y ejecutar tareas básicas.
-4. Given el equipo desea personalizar los prompts, When edita secciones dentro de `.onboarding` y ejecuta el sistema de armado de prompts, Then los prompts resultantes reflejan los cambios y quedan listos para build/deploy del package.
-5. Given se completa la generación, When finaliza `/generate-onboarding`, Then los archivos se escriben en `docs/onboarding/` listos para ser comiteados.
-6. Given un monorepo con múltiples paquetes, When ejecuto `/generate-onboarding`, Then el sistema solicita elegir paquetes objetivo y genera el onboarding para los seleccionados.
-7. Given el análisis tecnológico es inconcluso, When ejecuto `/generate-onboarding`, Then el sistema usa plantillas genéricas y solicita 3 inputs clave al usuario para completar la generación.
-8. Given ejecuto el instalador de Universal Onboarding, When selecciono el tipo de repo propuesto, Then se siembran templates correspondientes en `.onboarding/template/` listos para usar.
-9. Given ejecuto `/teach`, When se desarrolla una sesión didáctica, Then se registra un log local de la sesión en `.onboarding/logs` con timestamps y pasos ejecutados.
+1. Given un repositorio objetivo, When ejecuto `npx repository-onboarding-generator init`, Then se crea en ese repositorio la carpeta `.onboarding/` con prompts `/generate-onboarding` y `/teach`, y scripts base de análisis listos para ejecutar.
+2. Given un repositorio objetivo ya inicializado, When ejecuto `npx repository-onboarding-generator generate`, Then la AI (en el editor) usa el AnalysisOutput y los templates de `.onboarding/template` para producir documentación de onboarding lista para revisión.
+3. Given un usuario nuevo, When ejecuta `/teach` usando los prompts creados por el CLI en el repo objetivo, Then la AI lo guía paso a paso para preparar el entorno, entender la arquitectura, y ejecutar tareas básicas.
+4. Given el equipo desea personalizar los prompts, When edita secciones dentro de `.onboarding` en el repo objetivo y ejecuta el sistema de armado de prompts (provisto por el CLI/build), Then los prompts resultantes reflejan los cambios y quedan listos para build/deploy del package.
+5. Given se completa la generación, When la AI finaliza la sesión de generación, Then los archivos se escriben en `docs/onboarding/` del repo objetivo listos para ser comiteados.
+6. Given un monorepo con múltiples paquetes, When ejecuto `npx repository-onboarding-generator generate`, Then el sistema solicita elegir paquetes objetivo y genera el onboarding para los seleccionados.
+7. Given el análisis tecnológico es inconcluso, When ejecuto `npx repository-onboarding-generator generate`, Then el sistema usa plantillas genéricas y solicita 3 inputs clave al usuario para completar la generación.
+8. Given ejecuto `npx repository-onboarding-generator init`, When selecciono el tipo de repo propuesto, Then se siembran templates correspondientes en `.onboarding/template/` del repo objetivo listos para usar.
+9. Given ejecuto `/teach` en el repo objetivo, When se desarrolla una sesión didáctica, Then se registra un log local de la sesión en `.onboarding/logs` con timestamps y pasos ejecutados.
 
 ### Edge Cases
 
@@ -62,7 +65,7 @@ Como mantenedor de un repositorio, quiero instalar Universal Onboarding para que
 - Monorepos: durante la generación, el sistema solicita seleccionar paquetes objetivo a procesar.
 - Si no existen templates en `.onboarding/template/`, el instalador pregunta el tipo de repo y siembra el set de templates correspondiente.
 - Ubicación de salida: la documentación generada se escribe en `docs/onboarding/` para su versionado en el repositorio.
-- ¿Privacidad/seguridad de datos al usar AI local/remota? → Definir políticas de qué datos se exponen. [NEEDS CLARIFICATION]
+- Privacidad/seguridad: por defecto local-only (FR-015) y conectores opt-in con allowlist + auditoría (FR-016).
 
 ## Requirements (mandatory)
 
@@ -87,6 +90,14 @@ Como mantenedor de un repositorio, quiero instalar Universal Onboarding para que
 - FR-017: Teach logging: registrar localmente las sesiones de `/teach` (timestamps, pasos, resultados) en `.onboarding/logs` con política de retención configurable.
 - FR-018: Instalador: sembrar templates en `.onboarding/template/` pidiendo al usuario seleccionar el tipo de repo; permitir re‑sembrado posterior sin sobrescribir cambios sin confirmación.
 
+// CLI y Build System (este repositorio)
+
+- FR-019: CLI instalable (NPX) con comandos: `init` (siembra), `analyze` (emite AnalysisOutput JSON), `prepare` (valida templates, compone prompts/secciones y prepara contexto para la AI), `teach` (facilita apertura del prompt de enseñanza). La escritura de `docs/onboarding/` la realiza la AI en el editor.
+- FR-020: Plantillas y prompts se mantienen en este repo (p. ej., `src/templates/` y `src/parts/`) y se siembran en repos objetivo sin depender de red; no se crea `.onboarding/` dentro de este repo salvo en fixtures de tests.
+- FR-021: Extender `build/build.js` para soportar múltiples outputs y variables `repository.*`, reutilizando `processTemplate()` y preservando compatibilidad con la configuración actual (backward compatible).
+- FR-022: Sistema de variables: incorporar `repository.*` derivadas del análisis (stack, PM, scripts, workspaces) para procesamiento de plantillas/prompts.
+- FR-023: Publicación del CLI: exponer `bin/repository-onboarding-generator`, documentar `npx` y mantener performance (<5s análisis) y memoria (<100MB).
+
 ### Key Entities
 
 - Prompt: definición modular por secciones con metadatos (nombre, propósito, dependencias de templates).
@@ -94,6 +105,12 @@ Como mantenedor de un repositorio, quiero instalar Universal Onboarding para que
 - AnalysisOutput: datos estructurados del script de análisis (stack, dependencias, scripts, rutas, confianza).
 - BuildConfig: configuración de armado que mapea secciones a templates y variables.
 - SessionLog: registros de sesiones de enseñanza (timestamp, usuario opcional, pasos, resultados, versión de prompts), almacenados localmente.
+
+// Este repositorio
+
+- CLICommand: comandos `init|analyze|generate|teach` con opciones y IO (paths del repo objetivo).
+- TemplateSeed: set de archivos origen en este repo que se copian al repo objetivo, versionados y validados.
+- TargetRepository: contexto del repo donde se ejecuta el CLI (ruta, permisos, monorepo workspaces, `docs/onboarding/`).
 
 ---
 
