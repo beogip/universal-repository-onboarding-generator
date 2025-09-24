@@ -1,81 +1,76 @@
-# Feature Specification: Universal Repository Onboarding Generator v3.0.0
+# Feature Specification: Universal Onboarding AI Prompts and Scripts
 
 **Feature Branch**: `001-universal-repository-onboarding`  
-**Created**: 2025-09-18  
+**Created**: 2025-09-23  
 **Status**: Draft  
-**Input**: User description: "Universal Repository Onboarding Generator v3.0.0 with advanced template system and automated NPX installation process for consistent onboarding documentation generation"
+**Input**: User description: "La generación de la documentación debe ser hecha por una AI (Copilot/Cursor). Al instalarse, crear .onboarding y dos prompts /generate-onboarding y /teach. Scripts en .onboarding para operaciones (análisis de tecnologías del repo, etc.) usando ejemplos de .specify/scripts. /generate-onboarding: prompt que hace que la AI genere documentación usando outputs de script Node de análisis y templates en .onboarding/template. /teach: prompt en modo didacta para onboarding rápido. Fácil edición de prompts complejos con sistema de armado de prompts, dividido en secciones y build/deploy del package."
 
 ## Execution Flow (main)
 
 ```
 1. Parse user description from Input
-   → ✅ COMPLETE: Enhanced onboarding generator with templates and NPX installer
+   → If empty: ERROR "No feature description provided"
 2. Extract key concepts from description
-   → ✅ COMPLETE: actors (developers, maintainers), actions (install, generate), data (templates, config), constraints (4-hour contribution goal)
+   → Identify: actors, actions, data, constraints
 3. For each unclear aspect:
-   → ✅ COMPLETE: No unclear aspects identified
+   → Mark with [NEEDS CLARIFICATION: specific question]
 4. Fill User Scenarios & Testing section
-   → ✅ COMPLETE: Clear user flow from installation to documentation generation
+   → If no clear user flow: ERROR "Cannot determine user scenarios"
 5. Generate Functional Requirements
-   → ✅ COMPLETE: All requirements are testable and measurable
+   → Each requirement must be testable
+   → Mark ambiguous requirements
 6. Identify Key Entities (if data involved)
-   → ✅ COMPLETE: Templates, configuration, generated documentation
 7. Run Review Checklist
-   → ✅ COMPLETE: No implementation details, focused on user value
+   → If any [NEEDS CLARIFICATION]: WARN "Spec has uncertainties"
+   → If implementation details found: ERROR "Remove tech details"
 8. Return: SUCCESS (spec ready for planning)
 ```
 
 ---
 
-## ⚡ Quick Guidelines
-
-- ✅ Focus on WHAT users need and WHY
-- ❌ Avoid HOW to implement (no tech stack, APIs, code structure)
-- 👥 Written for business stakeholders, not developers
-
----
-
-## User Scenarios & Testing
+## User Scenarios & Testing (mandatory)
 
 ### Primary User Story
 
-As a repository maintainer, I want to easily install an onboarding documentation generator so that new developers can understand the codebase, set up their environment, and make their first meaningful contribution within 4 hours, with consistent quality documentation across all repositories.
+Como mantenedor de un repositorio, quiero instalar Universal Onboarding para que se creen prompts AI y scripts de análisis dentro de `.onboarding`, de modo que una AI (Copilot/Cursor) pueda generar documentación de onboarding personalizada y pueda guiar didácticamente a nuevos contribuyentes.
 
 ### Acceptance Scenarios
 
-1. **Given** a repository without onboarding documentation, **When** I run the installation command, **Then** the system creates template files, configuration, and the main generator prompt in appropriate directories within 5 minutes.
-2. **Given** a repository with the generator installed, **When** I trigger the documentation generation, **Then** the system analyzes the repository and produces tailored onboarding documentation using templates that match the detected technology stack.
-3. **Given** generated onboarding documentation, **When** a new developer follows it, **Then** they can complete environment setup in ≤30 minutes, understand core architecture in ≤20 minutes, and identify contribution opportunities in ≤10 minutes.
-4. **Given** an existing installation, **When** I re-run the installer, **Then** the process is safe, preserves customizations, and can be repeated without data loss.
+1. Given un repositorio existente, When instalo el paquete Universal Onboarding, Then se crea la carpeta `.onboarding` con prompts `/generate-onboarding` y `/teach`, y scripts base de análisis listos para ejecutar.
+2. Given ejecuto `/generate-onboarding`, When la AI procesa los outputs del script Node de análisis y consulta templates en `.onboarding/template`, Then se genera documentación de onboarding lista para revisión.
+3. Given un usuario nuevo, When ejecuta `/teach`, Then la AI lo guía paso a paso para preparar el entorno, entender la arquitectura, y ejecutar tareas básicas.
+4. Given el equipo desea personalizar los prompts, When edita secciones dentro de `.onboarding` y ejecuta el sistema de armado de prompts, Then los prompts resultantes reflejan los cambios y quedan listos para build/deploy del package.
 
 ### Edge Cases
 
-- What happens when the repository uses an unsupported or mixed technology stack?
-- How does the system handle repositories with existing onboarding documentation?
-- What occurs if the installation process is interrupted or fails midway?
-- How does the generator behave with repositories that have restricted file permissions?
+- ¿Qué sucede si el análisis de tecnologías falla o no detecta stack? → La AI debe fallback a plantillas genéricas y solicitar confirmaciones mínimas. [NEEDS CLARIFICATION]
+- ¿Cómo se manejan repos con múltiples paquetes (monorepos)? → Debe permitir análisis por subproyecto y consolidación. [NEEDS CLARIFICATION]
+- ¿Qué pasa si no existen templates en `.onboarding/template`? → Debe incluir templates base al instalar. [Confirmar alcance]
+- ¿Privacidad/seguridad de datos al usar AI local/remota? → Definir políticas de qué datos se exponen. [NEEDS CLARIFICATION]
 
-## Requirements
+## Requirements (mandatory)
 
 ### Functional Requirements
 
-- **FR-001**: System MUST allow installation via a single NPX command that analyzes the repository and sets up all necessary files
-- **FR-002**: System MUST automatically detect repository technology stack, architecture patterns, and project structure
-- **FR-003**: System MUST generate onboarding documentation using templates tailored to the detected technology stack
-- **FR-004**: System MUST create documentation that enables new developers to make their first meaningful contribution within 4 hours
-- **FR-005**: System MUST limit total generated documentation to ≤1500 lines across all files for focused, scannable content
-- **FR-006**: System MUST validate that all generated content references actual repository files, commands, and structure (no fictional content)
-- **FR-007**: System MUST create documentation with time estimates for setup (≤30 min), architecture understanding (≤20 min), and contribution identification (≤10 min)
-- **FR-008**: Installation process MUST be idempotent and safe to repeat without destroying existing customizations
-- **FR-009**: System MUST maintain template files locally for customization and offline generation
-- **FR-010**: System MUST integrate with VS Code Copilot for interactive AI-guided onboarding assistance
+- FR-001: El sistema debe crear automáticamente la carpeta `.onboarding` al instalarse, incluyendo prompts `/generate-onboarding` y `/teach` y scripts base de análisis.
+- FR-002: Debe existir un script Node de análisis de repositorio que detecte tecnologías, dependencias, scripts y estructura, y exporte outputs consumibles por la AI.
+- FR-003: El prompt `/generate-onboarding` debe instruir a la AI a generar documentación basada en outputs del análisis y templates en `.onboarding/template`.
+- FR-004: El prompt `/teach` debe instruir a la AI a operar en modo didáctico, guiando al usuario para preparar el entorno, entender arquitectura, ejecutar pruebas y contribuir.
+- FR-005: Debe permitir edición fácil de prompts complejos mediante un sistema de armado por secciones (archivos de secciones) previo a build/deploy del package.
+- FR-006: Debe soportar plantillas por tipo de repo y fallback genérico cuando el stack no se detecte con certeza.
+- FR-007: Debe generar documentación de onboarding en una ubicación estándar del repo y permitir regeneración bajo demanda.
+- FR-008: Debe incluir scripts en `.onboarding/scripts` inspirados en `.specify/scripts` para tareas avanzadas (por ejemplo, análisis incremental, verificación de dependencias, extracción de scripts).
+- FR-009: Debe proporcionar hooks o comandos para validar la consistencia entre los prompts y los templates antes de build/deploy.
+- FR-010: Debe registrar un resumen del análisis y generación (timestamp, entradas, salidas) para auditoría.
+- FR-011: Debe funcionar con AIs locales o integradas en el editor (Copilot/Cursor), sin dependencia de un proveedor específico. [NEEDS CLARIFICATION: alcance de integración]
+- FR-012: Debe exponer puntos de extensión para agregar nuevas secciones de prompts y nuevos templates sin romper compatibilidad.
 
 ### Key Entities
 
-- **Onboarding Template**: Structured file defining content format and sections for each type of documentation (README, setup guide, examples, troubleshooting)
-- **Repository Configuration**: Local settings file storing installation preferences, detected technologies, and customization options
-- **Generated Documentation**: Complete set of onboarding files tailored to the repository, including overview, setup instructions, usage examples, and contribution guidelines
-- **AI Integration Prompt**: Specialized instruction file that enables context-aware assistance for developers during onboarding
+- Prompt: definición modular por secciones con metadatos (nombre, propósito, dependencias de templates).
+- Template: archivo base por tipo de contenido (README, Quickstart, Contributing) con placeholders.
+- AnalysisOutput: datos estructurados del script de análisis (stack, dependencias, scripts, rutas, confianza).
+- BuildConfig: configuración de armado que mapea secciones a templates y variables.
 
 ---
 
@@ -83,18 +78,18 @@ As a repository maintainer, I want to easily install an onboarding documentation
 
 ### Content Quality
 
-- [x] No implementation details (languages, frameworks, APIs)
-- [x] Focused on user value and business needs
-- [x] Written for non-technical stakeholders
-- [x] All mandatory sections completed
+- [ ] No implementation details (languages, frameworks, APIs)
+- [ ] Enfoque en valor al usuario y necesidades de onboarding
+- [ ] Redactado para stakeholders no técnicos
+- [ ] Secciones obligatorias completas
 
 ### Requirement Completeness
 
-- [x] No [NEEDS CLARIFICATION] markers remain
-- [x] Requirements are testable and unambiguous
-- [x] Success criteria are measurable
-- [x] Scope is clearly bounded
-- [x] Dependencies and assumptions identified
+- [ ] Sin marcadores [NEEDS CLARIFICATION]
+- [ ] Requisitos testables y no ambiguos
+- [ ] Criterios de éxito medibles
+- [ ] Alcance claramente delimitado
+- [ ] Dependencias y supuestos identificados
 
 ---
 
@@ -106,6 +101,4 @@ As a repository maintainer, I want to easily install an onboarding documentation
 - [x] User scenarios defined
 - [x] Requirements generated
 - [x] Entities identified
-- [x] Review checklist passed
-
----
+- [ ] Review checklist passed
